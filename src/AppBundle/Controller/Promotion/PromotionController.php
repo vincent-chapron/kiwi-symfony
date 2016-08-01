@@ -7,6 +7,7 @@ use AppBundle\Form\Promotion\PromotionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -14,6 +15,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class PromotionController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions"
+     * )
+     *
      * @View(serializerGroups={"Default"})
      * @return ArrayCollection<Promotion>
      */
@@ -26,6 +32,11 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Promotion $promotion
@@ -37,6 +48,11 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions"
+     * )
+     *
      * @param Request $request
      * @return Promotion
      */
@@ -60,6 +76,11 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Request $request

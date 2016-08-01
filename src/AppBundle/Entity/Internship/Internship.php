@@ -29,14 +29,14 @@ class Internship
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="start_at", type="datetime")
+     * @ORM\Column(name="start_at", type="date")
      */
     private $startAt;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="end_at", type="datetime")
+     * @ORM\Column(name="end_at", type="date")
      */
     private $endAt;
 
@@ -148,4 +148,3 @@ class Internship
         return $this->student;
     }
 }
-

@@ -6,6 +6,7 @@ use AppBundle\Entity\Year\Period;
 use AppBundle\Form\Year\PeriodType;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -13,6 +14,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class PeriodController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("year", class="AppBundle\Entity\Year\Period")
      * @param Period $period
@@ -24,6 +30,11 @@ class PeriodController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @param Request $request
      * @return Period
      * @throw BadRequestHttpException
@@ -48,6 +59,11 @@ class PeriodController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Request $request

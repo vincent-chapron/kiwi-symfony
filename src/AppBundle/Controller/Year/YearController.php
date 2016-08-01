@@ -7,6 +7,7 @@ use AppBundle\Form\Year\YearType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
+use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -14,6 +15,11 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class YearController extends FOSRestController
 {
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @View(serializerGroups={"Default"})
      * @return ArrayCollection<Year>
      */
@@ -27,6 +33,11 @@ class YearController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("year", class="AppBundle\Entity\Year\Year")
      * @param Year $year
@@ -38,6 +49,11 @@ class YearController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @param Request $request
      * @return Year
      */
@@ -61,6 +77,11 @@ class YearController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
      * @View(serializerGroups={"Default", "Details"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Request $request
