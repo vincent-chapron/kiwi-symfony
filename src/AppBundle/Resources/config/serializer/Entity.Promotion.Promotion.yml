@@ -1,0 +1,15 @@
+AppBundle\Entity\Promotion\Promotion:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        students:
+            expose: true
+            groups:
+                - Details
+    virtual_properties:
+        getStudentsCount:
+            serialized_name: student_count
+            type: integer

@@ -1,0 +1,15 @@
+periods:
+    type:     rest
+    resource: AppBundle\Controller\Year\PeriodController
+
+promotions:
+    type:     rest
+    resource: AppBundle\Controller\Promotion\PromotionController
+
+students:
+    type:     rest
+    resource: AppBundle\Controller\StudentController
+
+years:
+    type:     rest
+    resource: AppBundle\Controller\Year\YearController

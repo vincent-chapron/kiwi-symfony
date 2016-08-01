@@ -1,0 +1,21 @@
+AppBundle\Entity\Student:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        email:
+            expose: true
+            groups:
+                - Details
+        phoneMobile:
+            expose: true
+            groups:
+                - Details
+        internships:
+            expose: true
+            groups:
+                - Details
+    virtual_properties:
+        getFullName:
+            serialized_name: fullname
+            type: string
