@@ -41,7 +41,7 @@ class Internship
     private $endAt;
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Year\Year")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Year\Year", inversedBy="internships")
      * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
      */
     private $year;
@@ -114,9 +114,12 @@ class Internship
      * @param Year $year
      * @return Internship
      */
-    public function setYear($year)
+    public function setYear(Year $year)
     {
         $this->year = $year;
+        if ($this->year != null) {
+            $this->year->addInternship($this);
+        }
 
         return $this;
     }
@@ -133,9 +136,12 @@ class Internship
      * @param Student $student
      * @return Internship
      */
-    public function setStudent($student)
+    public function setStudent(Student $student)
     {
         $this->student = $student;
+        if ($this->student != null) {
+            $this->student->addInternship($this);
+        }
 
         return $this;
     }

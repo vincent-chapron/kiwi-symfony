@@ -189,24 +189,15 @@ class Student
     }
 
     /**
-     * @param Internship $internship
-     * @return Student
-     */
-    public function addInternship($internship)
-    {
-        $this->internships->add($internship);
-        $internship->setStudent($this);
-
-        return $this;
-    }
-
-    /**
      * @param Promotion $promotion
      * @return Student
      */
-    public function setPromotion($promotion)
+    public function setPromotion(Promotion $promotion)
     {
         $this->promotion = $promotion;
+        if ($promotion != null) {
+            $this->promotion->addStudent($this);
+        }
 
         return $this;
     }
@@ -217,6 +208,20 @@ class Student
     public function getPromotion()
     {
         return $this->promotion;
+    }
+
+    /**
+     * @param Internship $internship
+     * @return Student
+     */
+    public function addInternship(Internship $internship = null)
+    {
+        $this->internships->add($internship);
+        if ($internship->getStudent() && $internship->getStudent()->getId() != $this->id) {
+            $internship->setStudent($this);
+        }
+
+        return $this;
     }
 
     /**

@@ -99,10 +99,12 @@ class Promotion
      * @param Student $student
      * @return Promotion
      */
-    public function addStudent(Student $student)
+    public function addStudent(Student $student = null)
     {
         $this->students->add($student);
-        $student->setPromotion($this);
+        if ($student->getPromotion() && $student->getPromotion()->getId() != $this->id) {
+            $student->setPromotion($this);
+        }
 
         return $this;
     }
@@ -111,7 +113,7 @@ class Promotion
      * @param Student $student
      * @return Promotion
      */
-    public function removeStudent($student)
+    public function removeStudent(Student $student)
     {
         $this->students->remove($student);
         $student->setPromotion(null);
@@ -131,10 +133,12 @@ class Promotion
      * @param Year $year
      * @return Promotion
      */
-    public function addYear(Year $year)
+    public function addYear(Year $year = null)
     {
         $this->years->add($year);
-        $year->setPromotion($this);
+        if ($year->getPromotion() && $year->getPromotion()->getId() != $this->id) {
+            $year->setPromotion($this);
+        }
 
         return $this;
     }

@@ -135,9 +135,12 @@ class Period
      * @param Year $year
      * @return Period
      */
-    public function setYear($year)
+    public function setYear(Year $year)
     {
         $this->year = $year;
+        if ($this->year != null) {
+            $this->year->addPeriod($this);
+        }
 
         return $this;
     }

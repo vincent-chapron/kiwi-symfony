@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity\Year;
 
+use AppBundle\Entity\Internship\Internship;
 use AppBundle\Entity\Promotion\Promotion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -20,6 +21,7 @@ class Year
     public function __construct()
     {
         $this->periods = new ArrayCollection();
+        $this->internships = new ArrayCollection();
     }
 
     /**
@@ -54,6 +56,11 @@ class Year
      * @ORM\OneToMany(targetEntity="Period", mappedBy="year")
      */
     private $periods;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Internship\Internship", mappedBy="year")
+     */
+    private $internships;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion\Promotion", inversedBy="years")
@@ -142,10 +149,12 @@ class Year
      * @param Period $period
      * @return Year
      */
-    public function addPeriod($period)
+    public function addPeriod(Period $period = null)
     {
         $this->periods->add($period);
-        $period->setYear($this);
+        if ($period->getYear() && $period->getYear()->getId() != $this->id) {
+            $period->setYear($this);
+        }
 
         return $this;
     }
@@ -154,7 +163,7 @@ class Year
      * @param Period $period
      * @return Year
      */
-    public function removePeriod($period)
+    public function removePeriod(Period $period)
     {
         $this->periods->remove($period);
         $period->setYear(null);
@@ -171,12 +180,49 @@ class Year
     }
 
     /**
+     * @param Internship $internship
+     * @return Year
+     */
+    public function addInternship(Internship $internship = null)
+    {
+        $this->internships->add($internship);
+        if ($internship->getYear() && $internship->getYear()->getId() != $this->id) {
+            $internship->setYear($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Internship $internship
+     * @return Year
+     */
+    public function removeInternship(Internship $internship)
+    {
+        $this->internships->remove($internship);
+        $internship->setYear(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Internship>
+     */
+    public function getInternships()
+    {
+        return $this->internships;
+    }
+
+    /**
      * @param Promotion $promotion
      * @return Year
      */
     public function setPromotion(Promotion $promotion)
     {
         $this->promotion = $promotion;
+        if ($this->promotion != null) {
+            $this->promotion->addYear($this);
+        }
 
         return $this;
     }
