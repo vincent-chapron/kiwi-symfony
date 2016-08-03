@@ -1,3 +1,7 @@
+internships:
+    type:     rest
+    resource: AppBundle\Controller\Internship\InternshipController
+
 periods:
     type:     rest
     resource: AppBundle\Controller\Year\PeriodController
