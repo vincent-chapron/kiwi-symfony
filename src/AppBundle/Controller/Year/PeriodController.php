@@ -16,11 +16,14 @@ class PeriodController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Years"
+     *      section = "Years",
+     *      requirements = {
+     *          { "name" = "period", "dataType" = "uuid", "description" = "Example: a9dd6771-57f3-11e6-ae94-0071bec7ef07" }
+     *      }
      * )
      *
      * @View(serializerGroups={"Default", "Details"})
-     * @ParamConverter("year", class="AppBundle\Entity\Year\Period")
+     * @ParamConverter("period", class="AppBundle\Entity\Year\Period")
      * @param Period $period
      * @return Period
      */
@@ -32,7 +35,13 @@ class PeriodController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Years"
+     *      section = "Years",
+     *      parameters = {
+     *          { "name" = "name",    "dataType" = "string",                          "required" = true, "description" = "Example: Semestre 1" },
+     *          { "name" = "startAt", "dataType" = "date",   "format" = "yyyy-MM-dd", "required" = true, "description" = "Example: 2015-09-01" },
+     *          { "name" = "endAt",   "dataType" = "date",   "format" = "yyyy-MM-dd", "required" = true, "description" = "Example: 2015-01-01" },
+     *          { "name" = "year",    "dataType" = "uuid",                            "required" = true, "description" = "Example: 8e194bc0-57ec-11e6-ae94-0071bec7ef07" }
+     *      }
      * )
      *
      * @param Request $request
@@ -61,7 +70,15 @@ class PeriodController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Years"
+     *      section = "Years",
+     *      requirements = {
+     *          { "name" = "period", "dataType" = "uuid", "description" = "Example: a9dd6771-57f3-11e6-ae94-0071bec7ef07" }
+     *      },
+     *      parameters = {
+     *          { "name" = "name",    "dataType" = "string",                          "required" = false, "description" = "Example: Semestre 2" },
+     *          { "name" = "startAt", "dataType" = "date",   "format" = "yyyy-MM-dd", "required" = false, "description" = "Example: 2016-01-01" },
+     *          { "name" = "endAt",   "dataType" = "date",   "format" = "yyyy-MM-dd", "required" = false, "description" = "Example: 2016-07-01" }
+     *      }
      * )
      *
      * @View(serializerGroups={"Default", "Details"})

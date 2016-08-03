@@ -54,6 +54,11 @@ class YearController extends FOSRestController
      *      section = "Years"
      * )
      *
+     * name
+     * startAt
+     * endAt
+     * promotion
+     *
      * @param Request $request
      * @return Year
      */

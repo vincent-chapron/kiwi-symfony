@@ -34,7 +34,10 @@ class PromotionController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Promotions"
+     *      section = "Promotions",
+     *      requirements = {
+     *          { "name" = "promotion", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
      * )
      *
      * @View(serializerGroups={"Default", "Details"})
@@ -50,7 +53,10 @@ class PromotionController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Promotions"
+     *      section = "Promotions",
+     *      parameters = {
+     *          { "name" = "name", "dataType" = "string", "required" = true, "description" = "Example: Promotion 2019" }
+     *      }
      * )
      *
      * @param Request $request
@@ -78,7 +84,13 @@ class PromotionController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "Promotions"
+     *      section = "Promotions",
+     *      requirements = {
+     *          { "name" = "promotion", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      },
+     *      parameters = {
+     *          { "name" = "name", "dataType" = "string", "required" = true, "description" = "Example: Promotion 2020" }
+     *      }
      * )
      *
      * @View(serializerGroups={"Default", "Details"})
