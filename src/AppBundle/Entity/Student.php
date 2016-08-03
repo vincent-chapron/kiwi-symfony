@@ -33,7 +33,7 @@ class Student
      */
     public function getFullName()
     {
-        return "$this->firstname $this->lastname";
+        return "$this->forenames $this->lastname";
     }
 
     /**
@@ -46,9 +46,9 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255)
+     * @ORM\Column(name="forenames", type="string", length=255)
      */
-    private $firstname;
+    private $forenames;
 
     /**
      * @var string
@@ -72,6 +72,27 @@ class Student
     private $phoneMobile;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="social_number", type="string", length=255, unique=true)
+     */
+    private $socialNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_name", type="string", length=255, nullable=true)
+     */
+    private $assuranceName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="assurance_contract_number", type="string", length=255, nullable=true)
+     */
+    private $assuranceContractNumber;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion\Promotion", inversedBy="students")
      * @ORM\JoinColumn(name="promotion_id", referencedColumnName="id")
      */
@@ -93,27 +114,27 @@ class Student
     }
 
     /**
-     * Set firstname
+     * Set forenames
      *
-     * @param string $firstname
+     * @param string $forenames
      *
      * @return Student
      */
-    public function setFirstname($firstname)
+    public function setForenames($forenames)
     {
-        $this->firstname = $firstname;
+        $this->forenames = $forenames;
 
         return $this;
     }
 
     /**
-     * Get firstname
+     * Get forenames
      *
      * @return string
      */
-    public function getFirstname()
+    public function getForenames()
     {
-        return $this->firstname;
+        return $this->forenames;
     }
 
     /**
@@ -186,6 +207,64 @@ class Student
     public function getPhoneMobile()
     {
         return $this->phoneMobile;
+    }
+
+    /**
+     * @param string $socialNumber
+     * @return Student
+     *
+     */
+    public function setSocialNumber($socialNumber)
+    {
+        $this->socialNumber = $socialNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSocialNumber()
+    {
+        return $this->socialNumber;
+    }
+
+    /**
+     * @param string $assuranceName
+     * @return Student
+     */
+    public function setAssuranceName($assuranceName)
+    {
+        $this->assuranceName = $assuranceName;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssuranceName()
+    {
+        return $this->assuranceName;
+    }
+
+    /**
+     * @param string $assuranceContractNumber
+     * @return Student
+     */
+    public function setAssuranceContractNumber($assuranceContractNumber)
+    {
+        $this->assuranceContractNumber = $assuranceContractNumber;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAssuranceContractNumber()
+    {
+        return $this->assuranceContractNumber;
     }
 
     /**
