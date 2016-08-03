@@ -22,6 +22,7 @@ class Student
 
     public function __construct()
     {
+        $this->prospect = true;
         $this->internships = new ArrayCollection();
     }
 
@@ -91,6 +92,13 @@ class Student
      * @ORM\Column(name="assurance_contract_number", type="string", length=255, nullable=true)
      */
     private $assuranceContractNumber;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="prospect", type="boolean")
+     */
+    private $prospect;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion\Promotion", inversedBy="students")
@@ -265,6 +273,25 @@ class Student
     public function getAssuranceContractNumber()
     {
         return $this->assuranceContractNumber;
+    }
+
+    /**
+     * @param boolean $prospect
+     * @return Student
+     */
+    public function setProspect($prospect)
+    {
+        $this->prospect = $prospect;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isProspect()
+    {
+        return $this->prospect;
     }
 
     /**
