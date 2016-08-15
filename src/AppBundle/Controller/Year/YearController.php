@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Year;
 
+use AppBundle\Entity\Year\Period;
 use AppBundle\Entity\Year\Year;
 use AppBundle\Form\Year\YearType;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,6 +16,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class YearController extends FOSRestController
 {
     /**
+     * Récupération de toutes les années.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years"
@@ -33,6 +35,7 @@ class YearController extends FOSRestController
     }
 
     /**
+     * Récupération d'une année.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years"
@@ -49,6 +52,30 @@ class YearController extends FOSRestController
     }
 
     /**
+     * Récupère toutes les périodes d'une année.
+     * Récupération d'une année.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years"
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @param $year_id
+     * @return ArrayCollection<Period>
+     */
+    public function getYearPeriodsAction($year_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $period_repository = $em->getRepository('AppBundle:Year\Period');
+        $periods = $period_repository->findByYear($year_id);
+
+        return $periods;
+    }
+
+    /**
+     * Création d'une année. Une année est une donnée qui va permettre de situer dans le temps toutes les données créer relier à celle ci.
+     * On va pouvoir ainsi avec un historique complet et sans perte d'information.
+     * Le 10 janvier 2016, cet étudiant était dans cette promotion et à eu cette note, avait ce stage ...
      * @ApiDoc(
      *      resource = false,
      *      section = "Years"
@@ -82,6 +109,7 @@ class YearController extends FOSRestController
     }
 
     /**
+     * Modification des informations d'une année.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years"

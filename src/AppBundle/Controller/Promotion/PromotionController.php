@@ -15,6 +15,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class PromotionController extends FOSRestController
 {
     /**
+     * Récupération de toutes les promotions.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions"
@@ -32,6 +33,7 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * Récupération des détails d'une promotion particulière.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions",
@@ -51,6 +53,30 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * Récupération des détails d'une promotion particulière.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions",
+     *      requirements = {
+     *          { "name" = "promotion_id", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @param $promotion_id
+     * @return ArrayCollection<Student>
+     */
+    public function getPromotionStudentsAction($promotion_id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $student_repository = $em->getRepository('AppBundle:Student');
+        $students = $student_repository->findByPromotion($promotion_id);
+
+        return $students;
+    }
+
+    /**
+     * Création d'une promotion. Une promotion est un groupe d'élèves.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions",
@@ -82,6 +108,7 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * Modification d'une promotion.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions",

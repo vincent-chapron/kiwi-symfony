@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class PeriodController extends FOSRestController
 {
     /**
+     * Récupère le détail d'un période.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years",
@@ -33,6 +34,7 @@ class PeriodController extends FOSRestController
     }
 
     /**
+     * Création d'une période. Une période est par exemple un trimestre ou un semestre. Elle servira à regrouper les notes et autres informations d'un étudiant.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years",
@@ -68,6 +70,7 @@ class PeriodController extends FOSRestController
     }
 
     /**
+     * Modification d'une période donnée.
      * @ApiDoc(
      *      resource = false,
      *      section = "Years",

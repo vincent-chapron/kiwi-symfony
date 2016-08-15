@@ -2,9 +2,9 @@ internships:
     type:     rest
     resource: AppBundle\Controller\Internship\InternshipController
 
-periods:
+internships_periods:
     type:     rest
-    resource: AppBundle\Controller\Year\PeriodController
+    resource: AppBundle\Controller\Internship\PeriodController
 
 promotions:
     type:     rest
@@ -17,3 +17,7 @@ students:
 years:
     type:     rest
     resource: AppBundle\Controller\Year\YearController
+
+years_periods:
+    type:     rest
+    resource: AppBundle\Controller\Year\PeriodController

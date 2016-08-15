@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class InternshipController extends FOSRestController
 {
     /**
+     * Récupération des détails d'un stage particulier.
      * @ApiDoc(
      *      resource = false,
      *      section = "Internships",
@@ -33,6 +34,7 @@ class InternshipController extends FOSRestController
     }
 
     /**
+     * Création d'un stage. Un stage est à la fois rataché à un étudiant, et à une année.
      * @ApiDoc(
      *      resource = false,
      *      section = "Internships",
@@ -68,6 +70,7 @@ class InternshipController extends FOSRestController
     }
 
     /**
+     * Modification d'un stage. Pour compléter ou corriger les informations d'un stage déjà créé.
      * @ApiDoc(
      *      resource = false,
      *      section = "Internships",

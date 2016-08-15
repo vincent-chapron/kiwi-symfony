@@ -13,11 +13,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 class StudentController extends FOSRestController
 {
     /**
-     * Get all students.
+     * Récupération des étudiants.
      * @ApiDoc(
      *      resource = false,
      *      section = "Students",
-     *      description = "Get all students.",
      *      statusCodes = {
      *          200 = "Success, return array of students."
      *      }
@@ -36,11 +35,10 @@ class StudentController extends FOSRestController
     }
 
     /**
-     * Get all students.
+     * Récupération d'un étudiant particulier.
      * @ApiDoc(
      *      resource = false,
      *      section = "Students",
-     *      description = "Get a specific student.",
      *      statusCodes = {
      *          200 = "Success, return a student.",
      *          404 = "Error, Student not found."
