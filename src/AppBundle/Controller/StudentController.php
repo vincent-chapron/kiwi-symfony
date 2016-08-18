@@ -3,11 +3,14 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Student;
+use AppBundle\Form\StudentType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\FOSRestController;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StudentController extends FOSRestController
@@ -53,5 +56,68 @@ class StudentController extends FOSRestController
     public function getStudentAction(Student $student)
     {
         return $student;
+    }
+
+    /**
+     * Création d'un étudiant.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Students"
+     * )
+     *
+     * @View(serializerGroups={"Default", "Details"})
+     * @param Request $request
+     * @return Student
+     */
+    public function postStudentsAction(Request $request)
+    {
+        $student = new Student();
+        $form = $this->createForm(StudentType::class, $student);
+
+        $data = json_decode($request->getContent(), true);
+        $form->submit($data);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($student);
+            $em->flush();
+
+            return $student;
+        }
+
+        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+    }
+
+    /**
+     * Modification d'un étudiant.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Students",
+     *      requirements = {
+     *          { "name" = "student", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default", "Details"})
+     * @ParamConverter("student", class="AppBundle\Entity\Student")
+     * @param Request $request
+     * @param Student $student
+     * @return Student
+     * @throw BadRequestHttpException
+     */
+    public function putStudentsAction(Request $request, Student $student) {
+        $form = $this->createForm(StudentType::class, $student);
+
+        $data = json_decode($request->getContent(), true);
+        $form->submit($data);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
+
+            return $student;
+        }
+
+        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
     }
 }

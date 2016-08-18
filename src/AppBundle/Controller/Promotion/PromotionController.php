@@ -53,7 +53,7 @@ class PromotionController extends FOSRestController
     }
 
     /**
-     * Récupération des détails d'une promotion particulière.
+     * Récupération des étudiants d'une promotion particulière.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions",
