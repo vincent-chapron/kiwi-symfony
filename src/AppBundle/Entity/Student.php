@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Course\Result;
 use AppBundle\Entity\Internship\Internship;
 use AppBundle\Entity\Presence\Historic;
 use AppBundle\Entity\Promotion\Promotion;
@@ -26,6 +27,7 @@ class Student
         $this->prospect = true;
         $this->internships = new ArrayCollection();
         $this->presences = new ArrayCollection();
+        $this->results = new ArrayCollection();
     }
 
     /**
@@ -117,6 +119,11 @@ class Student
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Presence\Historic", mappedBy="student")
      */
     private $presences;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="notes")
+     */
+    private $results;
 
     /**
      * Get id
@@ -389,5 +396,39 @@ class Student
     public function getPresences()
     {
         return $this->presences;
+    }
+
+    /**
+     * @param Result $result
+     * @return Student
+     */
+    public function addResult(Result $result = null)
+    {
+        $this->results->add($result);
+        if ($result->getStudent() && $result->getStudent()->getId() != $this->id) {
+            $result->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Result $result
+     * @return Student
+     */
+    public function removeResult($result)
+    {
+        $this->results->remove($result);
+        $result->setStudent(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Result>
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Promotion;
 
 use AppBundle\Entity\Beacon;
+use AppBundle\Entity\Course\Course;
 use AppBundle\Entity\Student;
 use AppBundle\Entity\Year\Exception;
 use AppBundle\Entity\Year\Period;
@@ -27,6 +28,7 @@ class Promotion
     {
         $this->students = new ArrayCollection();
         $this->years = new ArrayCollection();
+        $this->courses = new ArrayCollection();
         $this->beacons = new ArrayCollection();
     }
 
@@ -110,6 +112,11 @@ class Promotion
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Year\Year", mappedBy="promotion")
      */
     private $years;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Course", mappedBy="promotion")
+     */
+    private $courses;
 
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Beacon", inversedBy="promotions")
@@ -216,6 +223,40 @@ class Promotion
     public function getYears()
     {
         return $this->years;
+    }
+
+    /**
+     * @param Course $course
+     * @return Promotion
+     */
+    public function addCourse(Course $course = null)
+    {
+        $this->courses->add($course);
+        if ($course->getPromotion() && $course->getPromotion()->getId() != $this->id) {
+            $course->setPromotion($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Course $course
+     * @return Promotion
+     */
+    public function removeCourse(Course $course)
+    {
+        $this->courses->remove($course);
+        $course->setPromotion(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Course>
+     */
+    public function getCourses()
+    {
+        return $this->courses;
     }
 
     /**
