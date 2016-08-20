@@ -1,0 +1,5 @@
+services:
+    student_manager:
+        class: AppBundle\Manager\StudentManager
+        arguments:
+            - "@doctrine.orm.entity_manager"

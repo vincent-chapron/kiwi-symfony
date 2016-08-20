@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller\Promotion;
 
+use AppBundle\Entity\Presence\Historic;
 use AppBundle\Entity\Promotion\Promotion;
+use AppBundle\Entity\Student;
 use AppBundle\Form\Promotion\PromotionType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -53,24 +55,65 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions"
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
+     * @param Promotion $promotion
+     * @return array
+     */
+    public function getPromotionStatisticsAction(Promotion $promotion) {
+        $em = $this->getDoctrine()->getManager();
+        $students = $promotion->getStudents();
+        $statistics = ["total" => count($students)];
+
+        $presence_repository = $em->getRepository('AppBundle:Presence\Historic');
+        $period = $promotion->getCurrentPeriod();
+        $exception = $promotion->getCurrentException();
+        $data = $exception ? $exception : $period;
+
+        if (!$data) return array_merge($statistics, ['out-of-range' => count($students)]);
+
+        foreach ($students as $student) {
+            /**
+             * @var Student $student
+             * @var Historic $presence
+             */
+            $presence = $presence_repository->getCurrentPresence($student);
+            $status = $presence->getStatus() ? strtolower($presence->getStatus()) : 'waiting';
+
+            if (array_key_exists($status, $statistics)) {
+                $statistics[$status] += 1;
+            } else {
+                $statistics[$status] = 1;
+            }
+        }
+
+        return $statistics;
+    }
+
+    /**
      * Récupération des étudiants d'une promotion particulière.
      * @ApiDoc(
      *      resource = false,
      *      section = "Promotions",
      *      requirements = {
-     *          { "name" = "promotion_id", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *          { "name" = "promotion", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
      *      }
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @param $promotion_id
+     * @param $promotion
      * @return ArrayCollection<Student>
      */
-    public function getPromotionStudentsAction($promotion_id)
+    public function getPromotionStudentsAction($promotion)
     {
         $em = $this->getDoctrine()->getManager();
         $student_repository = $em->getRepository('AppBundle:Student');
-        $students = $student_repository->findByPromotion($promotion_id);
+        $students = $student_repository->findByPromotion($promotion);
 
         return $students;
     }

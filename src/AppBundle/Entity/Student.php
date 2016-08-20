@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Internship\Internship;
+use AppBundle\Entity\Presence\Historic;
 use AppBundle\Entity\Promotion\Promotion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +25,7 @@ class Student
     {
         $this->prospect = true;
         $this->internships = new ArrayCollection();
+        $this->presences = new ArrayCollection();
     }
 
     /**
@@ -110,6 +112,11 @@ class Student
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Internship\Internship", mappedBy="student")
      */
     private $internships;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Presence\Historic", mappedBy="student")
+     */
+    private $presences;
 
     /**
      * Get id
@@ -348,5 +355,39 @@ class Student
     public function getInternships()
     {
         return $this->internships;
+    }
+
+    /**
+     * @param Historic $presence
+     * @return Student
+     */
+    public function addPresence(Historic $presence = null)
+    {
+        $this->presences->add($presence);
+        if ($presence->getStudent() && $presence->getStudent()->getId() != $this->id) {
+            $presence->setStudent($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Historic $presence
+     * @return Student
+     */
+    public function removePresence($presence)
+    {
+        $this->presences->remove($presence);
+        $presence->setStudent(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Presence>
+     */
+    public function getPresences()
+    {
+        return $this->presences;
     }
 }

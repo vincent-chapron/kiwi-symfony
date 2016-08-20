@@ -1,3 +1,7 @@
+beacon:
+    type:     rest
+    resource: AppBundle\Controller\BeaconController
+
 internships:
     type:     rest
     resource: AppBundle\Controller\Internship\InternshipController
@@ -5,6 +9,10 @@ internships:
 internships_periods:
     type:     rest
     resource: AppBundle\Controller\Internship\PeriodController
+
+presence_handle_beacon:
+    type:     rest
+    resource: AppBundle\Controller\Presence\HandleBeaconController
 
 promotions:
     type:     rest
@@ -17,6 +25,10 @@ students:
 years:
     type:     rest
     resource: AppBundle\Controller\Year\YearController
+
+years_exceptions:
+    type:     rest
+    resource: AppBundle\Controller\Year\ExceptionController
 
 years_periods:
     type:     rest

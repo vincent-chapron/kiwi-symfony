@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity\Promotion;
 
+use AppBundle\Entity\Beacon;
 use AppBundle\Entity\Student;
+use AppBundle\Entity\Year\Exception;
+use AppBundle\Entity\Year\Period;
 use AppBundle\Entity\Year\Year;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -24,6 +27,53 @@ class Promotion
     {
         $this->students = new ArrayCollection();
         $this->years = new ArrayCollection();
+        $this->beacons = new ArrayCollection();
+    }
+
+    public function getCurrentYear()
+    {
+        foreach ($this->years as $year) {
+            /** @var Year $year */
+            $date = new \DateTime();
+            $start_at = $year->getStartAt();
+            $end_at = $year->getEndAt();
+
+            if ($date >= $start_at && $date <= $end_at) return $year;
+        }
+
+        return null;
+    }
+
+    public function getCurrentPeriod()
+    {
+        if ($year = $this->getCurrentYear()) {
+            foreach ($year->getPeriods() as $period) {
+                /** @var Period $period */
+                $date = new \DateTime();
+                $start_at = $period->getStartAt();
+                $end_at = $period->getEndAt();
+
+                if ($date >= $start_at && $date <= $end_at) return $period;
+            }
+        }
+
+        return null;
+    }
+
+    public function getCurrentException()
+    {
+        if ($year = $this->getCurrentYear()) {
+            foreach ($year->getExceptions() as $exception) {
+                /** @var Exception $exception */
+                $date = new \DateTime();
+                $start_at = $exception->getStartAt();
+                $end_at = $exception->getEndAt();
+
+                if ($date >= $start_at && $date <= $end_at) return $exception;
+            }
+        }
+
+        return null;
     }
 
     /**
@@ -60,6 +110,11 @@ class Promotion
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Year\Year", mappedBy="promotion")
      */
     private $years;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Beacon", inversedBy="promotions")
+     */
+    private $beacons;
 
     /**
      * Get id
@@ -161,5 +216,39 @@ class Promotion
     public function getYears()
     {
         return $this->years;
+    }
+
+    /**
+     * @param Beacon $beacon
+     * @return Promotion
+     */
+    public function addBeacon(Beacon $beacon = null)
+    {
+        $this->beacons->add($beacon);
+        if ($beacon->getPromotions() && !$beacon->getPromotions()->contains($this)) {
+            $beacon->addPromotion($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Beacon $beacon
+     * @return Promotion
+     */
+    public function removeBeacon(Beacon $beacon)
+    {
+        $this->beacons->remove($beacon);
+        $beacon->removePromotion($this);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Beacon>
+     */
+    public function getBeacons()
+    {
+        return $this->beacons;
     }
 }

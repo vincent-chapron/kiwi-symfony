@@ -106,4 +106,27 @@ class PeriodController extends FOSRestController
 
         throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
     }
+
+    /**
+     * Suppression d'une Exception.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Years",
+     *      requirements = {
+     *          { "name" = "exception", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @ParamConverter("beacon", class="AppBundle\Entity\Year\Exception")
+     * @param Period $period
+     * @return Period
+     */
+    public function deletePeriodAction(Period $period) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($period);
+        $em->flush();
+
+        return $period;
+    }
 }

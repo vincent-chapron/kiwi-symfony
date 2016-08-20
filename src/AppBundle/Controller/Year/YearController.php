@@ -60,14 +60,14 @@ class YearController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @param $year_id
+     * @param $year
      * @return ArrayCollection<Period>
      */
-    public function getYearPeriodsAction($year_id)
+    public function getYearPeriodsAction($year)
     {
         $em = $this->getDoctrine()->getManager();
         $period_repository = $em->getRepository('AppBundle:Year\Period');
-        $periods = $period_repository->findByYear($year_id);
+        $periods = $period_repository->findByYear($year);
 
         return $periods;
     }

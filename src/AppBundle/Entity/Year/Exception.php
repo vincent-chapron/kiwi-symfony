@@ -3,18 +3,15 @@
 namespace AppBundle\Entity\Year;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
 /**
- * Period
+ * Exception
  *
- * @ORM\Table(name="period")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\Year\PeriodRepository")
+ * @ORM\Table(name="exception")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Year\ExceptionRepository")
  */
-class Period
+class Exception
 {
-    use SoftDeleteableEntity;
-
     /**
      * @ORM\Column(name="id", type="guid")
      * @ORM\Id
@@ -72,7 +69,14 @@ class Period
     private $endLeftTime;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Year", inversedBy="periods")
+     * @var bool
+     *
+     * @ORM\Column(name="presence_required", type="boolean")
+     */
+    private $presenceRequired;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Year", inversedBy="exceptions")
      * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
      */
     private $year;
@@ -92,7 +96,7 @@ class Period
      *
      * @param string $name
      *
-     * @return Period
+     * @return Exception
      */
     public function setName($name)
     {
@@ -116,7 +120,7 @@ class Period
      *
      * @param \DateTime $startAt
      *
-     * @return Period
+     * @return Exception
      */
     public function setStartAt($startAt)
     {
@@ -140,7 +144,7 @@ class Period
      *
      * @param \DateTime $endAt
      *
-     * @return Period
+     * @return Exception
      */
     public function setEndAt($endAt)
     {
@@ -160,9 +164,11 @@ class Period
     }
 
     /**
-     * @param mixed $startArrivedTime
+     * Set startArrivedTime
      *
-     * @return Period
+     * @param string $startArrivedTime
+     *
+     * @return Exception
      */
     public function setStartArrivedTime($startArrivedTime)
     {
@@ -172,7 +178,9 @@ class Period
     }
 
     /**
-     * @return mixed
+     * Get startArrivedTime
+     *
+     * @return string
      */
     public function getStartArrivedTime()
     {
@@ -180,9 +188,11 @@ class Period
     }
 
     /**
-     * @param mixed $endArrivedTime
+     * Set endArrivedTime
      *
-     * @return Period
+     * @param string $endArrivedTime
+     *
+     * @return Exception
      */
     public function setEndArrivedTime($endArrivedTime)
     {
@@ -192,7 +202,9 @@ class Period
     }
 
     /**
-     * @return mixed
+     * Get endArrivedTime
+     *
+     * @return string
      */
     public function getEndArrivedTime()
     {
@@ -200,9 +212,11 @@ class Period
     }
 
     /**
-     * @param mixed $startLeftTime
+     * Set startLeftTime
      *
-     * @return Period
+     * @param string $startLeftTime
+     *
+     * @return Exception
      */
     public function setStartLeftTime($startLeftTime)
     {
@@ -212,7 +226,9 @@ class Period
     }
 
     /**
-     * @return mixed
+     * Get startLeftTime
+     *
+     * @return string
      */
     public function getStartLeftTime()
     {
@@ -220,9 +236,11 @@ class Period
     }
 
     /**
+     * Set endLeftTime
+     *
      * @param string $endLeftTime
      *
-     * @return Period
+     * @return Exception
      */
     public function setEndLeftTime($endLeftTime)
     {
@@ -232,6 +250,8 @@ class Period
     }
 
     /**
+     * Get endLeftTime
+     *
      * @return string
      */
     public function getEndLeftTime()
@@ -240,14 +260,38 @@ class Period
     }
 
     /**
+     * Set presenceRequired
+     *
+     * @param boolean $presenceRequired
+     *
+     * @return Exception
+     */
+    public function setPresenceRequired($presenceRequired)
+    {
+        $this->presenceRequired = $presenceRequired;
+
+        return $this;
+    }
+
+    /**
+     * Get presenceRequired
+     *
+     * @return bool
+     */
+    public function getPresenceRequired()
+    {
+        return $this->presenceRequired;
+    }
+
+    /**
      * @param Year $year
-     * @return Period
+     * @return Exception
      */
     public function setYear(Year $year)
     {
         $this->year = $year;
         if ($this->year != null) {
-            $this->year->addPeriod($this);
+            $this->year->addException($this);
         }
 
         return $this;

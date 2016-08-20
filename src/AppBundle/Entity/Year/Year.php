@@ -21,6 +21,7 @@ class Year
     public function __construct()
     {
         $this->periods = new ArrayCollection();
+        $this->exceptions = new ArrayCollection();
         $this->internships = new ArrayCollection();
     }
 
@@ -56,6 +57,11 @@ class Year
      * @ORM\OneToMany(targetEntity="Period", mappedBy="year")
      */
     private $periods;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Exception", mappedBy="year")
+     */
+    private $exceptions;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Internship\Internship", mappedBy="year")
@@ -177,6 +183,40 @@ class Year
     public function getPeriods()
     {
         return $this->periods;
+    }
+
+    /**
+     * @param Exception $exception
+     * @return Year
+     */
+    public function addException(Exception $exception = null)
+    {
+        $this->exceptions->add($exception);
+        if ($exception->getYear() && $exception->getYear()->getId() != $this->id) {
+            $exception->setYear($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Exception $exception
+     * @return Year
+     */
+    public function removeException(Exception $exception)
+    {
+        $this->exceptions->remove($exception);
+        $exception->setYear(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Exception>
+     */
+    public function getExceptions()
+    {
+        return $this->exceptions;
     }
 
     /**
