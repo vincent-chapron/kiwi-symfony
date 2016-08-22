@@ -4,15 +4,48 @@ namespace AppBundle\Entity\Course;
 
 use AppBundle\Entity\Student;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Result
  *
- * @ORM\Table(name="course\result")
+ * @ORM\Table(name="result")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Course\ResultRepository")
  */
 class Result
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
+    public function getResult()
+    {
+        $result = 0;
+        foreach ($this->value as $value) {
+            $result += $value;
+        }
+        return $result;
+    }
+
+    public function getResultOnNoteBase()
+    {
+        $result = 0;
+        foreach ($this->value as $value) {
+            $result += $value;
+        }
+
+        $max = 0;
+        foreach ($this->getNote()->getScale() as $scale) {
+            if (array_key_exists("value", $scale)) {
+                $max += $scale["value"];
+            }
+        };
+
+        $result = ($result * $this->getNote()->getBase()) / $max;
+
+        return $result;
+    }
+
     /**
      * @var int
      *

@@ -1,6 +1,18 @@
-beacon:
+beacons:
     type:     rest
     resource: AppBundle\Controller\BeaconController
+
+courses:
+    type:     rest
+    resource: AppBundle\Controller\Course\CourseController
+
+courses_notes:
+    type:     rest
+    resource: AppBundle\Controller\Course\NoteController
+
+courses_results:
+    type:     rest
+    resource: AppBundle\Controller\Course\ResultController
 
 internships:
     type:     rest

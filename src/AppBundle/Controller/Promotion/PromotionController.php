@@ -119,6 +119,29 @@ class PromotionController extends FOSRestController
     }
 
     /**
+     * Récupération des cours d'une promotion particulière.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions",
+     *      requirements = {
+     *          { "name" = "promotion", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @param $promotion
+     * @return ArrayCollection<Course>
+     */
+    public function getPromotionCoursesAction($promotion)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $course_repository = $em->getRepository('AppBundle:Course\Course');
+        $courses = $course_repository->findByPromotion($promotion);
+
+        return $courses;
+    }
+
+    /**
      * Création d'une promotion. Une promotion est un groupe d'élèves.
      * @ApiDoc(
      *      resource = false,

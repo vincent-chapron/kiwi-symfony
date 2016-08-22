@@ -5,6 +5,8 @@ namespace AppBundle\Entity\Course;
 use AppBundle\Entity\Promotion\Promotion;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Course
@@ -14,6 +16,9 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Course
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     public function __construct()
     {
         $this->notes = new ArrayCollection();

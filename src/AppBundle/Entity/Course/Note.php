@@ -4,15 +4,20 @@ namespace AppBundle\Entity\Course;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * Note
  *
- * @ORM\Table(name="course\note")
+ * @ORM\Table(name="note")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\Course\NoteRepository")
  */
 class Note
 {
+    use TimestampableEntity;
+    use SoftDeleteableEntity;
+
     public function __construct()
     {
         $this->results = new ArrayCollection();
@@ -40,6 +45,8 @@ class Note
      * @ORM\Column(name="base", type="float")
      */
     private $base;
+
+    // TODO COEFFICIENT
 
     /**
      * @var array
