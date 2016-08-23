@@ -48,7 +48,7 @@ class StudentController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Student"})
      * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @param Student $student
      * @return Student
@@ -65,7 +65,7 @@ class StudentController extends FOSRestController
      *      section = "Students"
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Student"})
      * @param Request $request
      * @return Student
      */
@@ -98,7 +98,7 @@ class StudentController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Student"})
      * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @param Request $request
      * @param Student $student

@@ -6,15 +6,15 @@ AppBundle\Entity\Student:
         email:
             expose: true
             groups:
-                - Details
+                - Student
         phoneMobile:
             expose: true
             groups:
-                - Details
+                - Student
         internships:
             expose: true
             groups:
-                - Details
+                - Student
     virtual_properties:
         getFullName:
             serialized_name: fullname

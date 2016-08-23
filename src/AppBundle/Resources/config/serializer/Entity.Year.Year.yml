@@ -1,27 +1,29 @@
-AppBundle\Entity\Promotion\Promotion:
+AppBundle\Entity\Year\Year:
     exclusion_policy: ALL
     properties:
         id:
             expose: true
         name:
             expose: true
-        students:
+        startAt:
             expose: true
             groups:
+                - Year
                 - Promotion
-        years:
+        endAt:
             expose: true
             groups:
+                - Year
                 - Promotion
-        courses:
+        periods:
             expose: true
             groups:
-                - Promotion
-        beacons:
+                - Year
+        exceptions:
             expose: true
             groups:
-                - Promotion
-    virtual_properties:
-        getStudentsCount:
-            serialized_name: student_count
-            type: integer
+                - Year
+        internships:
+            expose: true
+            groups:
+                - Year

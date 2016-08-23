@@ -44,7 +44,7 @@ class PromotionController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Promotion"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Promotion $promotion
      * @return Promotion
@@ -105,7 +105,7 @@ class PromotionController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default"})
+     * @View(serializerGroups={"Default", "Promotion"})
      * @param $promotion
      * @return ArrayCollection<Student>
      */
@@ -128,7 +128,7 @@ class PromotionController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default"})
+     * @View(serializerGroups={"Default", "Promotion"})
      * @param $promotion
      * @return ArrayCollection<Course>
      */
@@ -151,6 +151,7 @@ class PromotionController extends FOSRestController
      *      }
      * )
      *
+     * @View(serializerGroups={"Default", "Promotion"})
      * @param Request $request
      * @return Promotion
      */
@@ -186,7 +187,7 @@ class PromotionController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Promotion"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Request $request
      * @param Promotion $promotion

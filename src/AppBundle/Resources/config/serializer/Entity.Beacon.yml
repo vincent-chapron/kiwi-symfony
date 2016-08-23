@@ -1,0 +1,15 @@
+AppBundle\Entity\Beacon:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        secureUuid:
+            expose: true
+            groups:
+                - Beacon
+        promotions:
+            expose: true
+            groups:
+                - Beacon
