@@ -34,16 +34,16 @@ class Beacon
     private $secureUuid;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Promotion\Promotion", mappedBy="beacons", cascade={"persist"})
-     */
-    private $promotions;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Promotion\Promotion", mappedBy="beacons", cascade={"persist"})
+     */
+    private $promotions;
 
     /**
      * Get id

@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Beacon;
+use AppBundle\Entity\Promotion\Promotion;
 use AppBundle\Form\BeaconType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -85,6 +86,10 @@ class BeaconController extends FOSRestController
      */
     public function deleteBeaconAction(Beacon $beacon) {
         $em = $this->getDoctrine()->getManager();
+        foreach ($beacon->getPromotions() as $promotion) {
+            /** @var Promotion $promotion */
+            $promotion->removeBeacon($beacon);
+        }
         $em->remove($beacon);
         $em->flush();
 

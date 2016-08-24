@@ -19,3 +19,9 @@ AppBundle\Entity\Student:
         getFullName:
             serialized_name: fullname
             type: string
+        getCurrentStatus:
+            serialized_name: status
+            type: string
+            groups:
+                - Student
+                - Promotion

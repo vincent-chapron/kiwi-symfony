@@ -42,6 +42,29 @@ class Student
     }
 
     /**
+     * VIRTUAL PROPERTY
+     * Get current status
+     *
+     * @return string
+     */
+    public function getCurrentStatus()
+    {
+        $presences = $this->presences->filter(function($presence) {
+            /** @var Historic $presence */
+            $date = date("y-m-d", $presence->getCreatedAt()->getTimestamp());
+            $today = date("y-m-d", strtotime("today"));
+
+            return ($date === $today);
+        });
+
+        if (!count($presences)) return null;
+
+        /** @var Historic $presence */
+        $presence = $presences->first();
+        return $presence->getStatus() ? $presence->getStatus() : 'waiting';
+    }
+
+    /**
      * @ORM\Column(name="id", type="guid")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="UUID")
@@ -79,7 +102,7 @@ class Student
     /**
      * @var string
      *
-     * @ORM\Column(name="social_number", type="string", length=255, unique=true)
+     * @ORM\Column(name="social_number", type="string", length=255, unique=true, nullable=true)
      */
     private $socialNumber;
 
