@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Promotion;
 
+use AppBundle\Entity\Beacon;
 use AppBundle\Entity\Presence\Historic;
 use AppBundle\Entity\Promotion\Promotion;
 use AppBundle\Entity\Student;
@@ -208,5 +209,32 @@ class PromotionController extends FOSRestController
         }
 
         throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+    }
+
+    /**
+     * Modification d'une promotion.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Promotions",
+     *      requirements = {
+     *          { "name" = "promotion", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" },
+     *          { "name" = "beacon",    "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef08" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default", "Promotion"})
+     * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
+     * @ParamConverter("beacon", class="AppBundle\Entity\beacon")
+     * @param Promotion $promotion
+     * @param Beacon $beacon
+     * @return Promotion
+     * @throw BadRequestHttpException
+     */
+    public function patchPromotionBeaconAction(Promotion $promotion, Beacon $beacon) {
+        $em = $this->getDoctrine()->getManager();
+        $promotion->addBeacon($beacon);
+        $em->flush();
+
+        return $promotion;
     }
 }
