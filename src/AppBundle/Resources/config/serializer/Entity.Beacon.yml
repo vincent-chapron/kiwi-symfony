@@ -7,8 +7,6 @@ AppBundle\Entity\Beacon:
             expose: true
         secureUuid:
             expose: true
-            groups:
-                - Beacon
         promotions:
             expose: true
             groups:
