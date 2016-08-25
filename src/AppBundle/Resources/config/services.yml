@@ -3,3 +3,5 @@ services:
         class: AppBundle\Manager\StudentManager
         arguments:
             - "@doctrine.orm.entity_manager"
+            - "@fos_user.user_manager"
+            - "@swiftmailer.mailer"
