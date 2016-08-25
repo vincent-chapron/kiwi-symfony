@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="user")
  */
 class User extends BaseUser
 {
@@ -18,8 +18,35 @@ class User extends BaseUser
      */
     protected $id;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Student", mappedBy="user")
+     */
+    protected $student;
+
     public function __construct()
     {
         parent::__construct();
+    }
+
+    /**
+     * @param Student $student
+     * @return user
+     */
+    public function setStudent(Student $student)
+    {
+        $this->student = $student;
+        if (!($student->getUser() && $student->getUser()->getId() == $this->id)) {
+            $student->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Student
+     */
+    public function getStudent()
+    {
+        return $this->student;
     }
 }

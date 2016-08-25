@@ -131,6 +131,12 @@ class Student
     private $prospect;
 
     /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="student")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $user;
+
+    /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Promotion\Promotion", inversedBy="students")
      * @ORM\JoinColumn(name="promotion_id", referencedColumnName="id")
      */
@@ -332,6 +338,30 @@ class Student
     public function isProspect()
     {
         return $this->prospect;
+    }
+
+    /**
+     * @param User $user
+     * @return Student
+     */
+    public function setUser(User $user)
+    {
+        if ($user) {
+            $this->user = $user;
+            if (!($user->getStudent() && $user->getStudent()->getId() == $this->id)) {
+                $user->setStudent($this);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 
     /**
