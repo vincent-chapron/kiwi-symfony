@@ -54,6 +54,7 @@ class StudentManager {
 
         $user = new User();
         $user->setEnabled(true);
+        $user->addRole("ROLE_STUDENT");
         $user->setEmail($student->getEmail());
         $user->setUsername($username);
         $user->setPlainPassword($password);

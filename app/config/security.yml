@@ -5,7 +5,8 @@ security:
         FOS\UserBundle\Model\UserInterface: bcrypt
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_STUDENT:     ROLE_USER
+        ROLE_ADMIN:       ROLE_STUDENT
         ROLE_SUPER_ADMIN: ROLE_ADMIN
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
@@ -44,4 +45,5 @@ security:
     access_control:
         - { path: ^/authenticate, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/doc,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/,             roles: [IS_AUTHENTICATED_FULLY]}
+        - { path: ^/,             roles: [IS_AUTHENTICATED_FULLY],    methods: [GET]}
+        - { path: ^/,             roles: [ROLE_ADMIN]}
