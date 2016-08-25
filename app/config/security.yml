@@ -1,24 +1,47 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/book/security.html
 security:
+    encoders:
+        FOS\UserBundle\Model\UserInterface: bcrypt
 
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
-        main:
-            anonymous: ~
-            # activate different ways to authenticate
-
-            # http_basic: ~
-            # http://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+        login:
+            pattern:  ^/authenticate
+            provider: fos_userbundle
+            stateless: true
+            anonymous: true
+            form_login:
+                check_path: /authenticate
+                require_previous_session: false
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+        api:
+            pattern:   ^/
+            stateless: true
+            anonymous: true
+            provider: fos_userbundle
+            lexik_jwt:
+                authorization_header:
+                    enabled: true
+                    prefix:  Bearer
+                query_parameter:
+                    enabled: true
+                    name:    bearer
+                throw_exceptions:        false
+                create_entry_point:      true
+    access_control:
+        - { path: ^/authenticate, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/doc,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/,             roles: [IS_AUTHENTICATED_FULLY]}

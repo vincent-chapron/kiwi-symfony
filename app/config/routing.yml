@@ -1,7 +1,3 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
-
 app_rest:
     type:     rest
     resource: "@AppBundle/Resources/config/routes.yml"
@@ -9,3 +5,8 @@ app_rest:
 NelmioApiDocBundle:
     resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
     prefix:   /api/doc
+
+authentication:
+    defaults:  { _controller: FOSUserBundle:Security:check }
+    path:      /authenticate
+    methods:   POST
