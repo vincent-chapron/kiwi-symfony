@@ -38,7 +38,10 @@ class Student
      */
     public function getFullName()
     {
-        return "$this->forenames $this->lastname";
+        $forenames = implode(' ', array_map(function($name) {return ucfirst($name);}, explode(' ', $this->forenames)));
+        $lastname = strtoupper($this->lastname);
+
+        return "$forenames $lastname";
     }
 
     /**
