@@ -78,9 +78,8 @@ class StudentController extends FOSRestController
         $form->submit($data);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($student);
-            $em->flush();
+            $studentManager = $this->get('student_manager');
+            $studentManager->createStudent($student);
 
             return $student;
         }
@@ -113,11 +112,13 @@ class StudentController extends FOSRestController
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $em->flush();
+            $em->flush();                                   //TODO UPDATE LE USER EGALEMENT
 
             return $student;
         }
 
         throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
     }
+
+    // TODO: ACTION POUR LE MDP
 }
