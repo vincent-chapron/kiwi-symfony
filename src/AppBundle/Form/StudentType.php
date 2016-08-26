@@ -26,7 +26,7 @@ class StudentType extends AbstractType
             ->add('promotion')
         ;
     }
-
+    
     /**
      * @param OptionsResolver $resolver
      */

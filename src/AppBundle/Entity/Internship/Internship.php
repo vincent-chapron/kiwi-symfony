@@ -106,7 +106,7 @@ class Internship
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Year\Year", inversedBy="internships")
      * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
      */
-    private $year;
+    private $year;   //TODO change with period
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Student", inversedBy="internships")

@@ -1,12 +1,12 @@
 <?php
 
-namespace AppBundle\Form\Year;
+namespace AppBundle\Form\Internship;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class YearType extends AbstractType
+class FollowUpType extends AbstractType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -15,8 +15,8 @@ class YearType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('promotion')
+            ->add('comment')
+            ->add('internship')
         ;
     }
     
@@ -26,7 +26,7 @@ class YearType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Year\Year',
+            'data_class' => 'AppBundle\Entity\Internship\FollowUp',
             'csrf_protection' => false,
         ));
     }

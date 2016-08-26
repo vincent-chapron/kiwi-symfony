@@ -18,6 +18,7 @@ class ResultType extends AbstractType
             ->add('value')
             ->add('note')
             ->add('student')
+            //TODO: ->add('period')
         ;
     }
     
