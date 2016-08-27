@@ -50,7 +50,7 @@ class FollowUpController extends FOSRestController
     /**
      * @ApiDoc(
      *      resource = false,
-     *      section = "FollowUps"
+     *      section = "Internships"
      * )
      *
      * @View(serializerGroups={"Default", "Details"})
