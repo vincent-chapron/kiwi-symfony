@@ -26,7 +26,7 @@ class FollowUpController extends FOSRestController
      * @param FollowUp $follow_up
      * @return FollowUp
      */
-    public function getFollowUpAction(FollowUp $follow_up)
+    public function getFollowupAction(FollowUp $follow_up)
     {
         return $follow_up;
     }
@@ -41,7 +41,7 @@ class FollowUpController extends FOSRestController
      * @return FollowUp
      * @throw BadRequestHttpException
      */
-    public function postFollowUpAction(Request $request)
+    public function postFollowupAction(Request $request)
     {
         return $this->get('data_provider')
             ->createOrUpdate($request, new FollowUp(), FollowUpType::class);
@@ -60,7 +60,7 @@ class FollowUpController extends FOSRestController
      * @return FollowUp
      * @throw BadRequestHttpException
      */
-    public function putFollowUpAction(Request $request, FollowUp $follow_up) {
+    public function putFollowupAction(Request $request, FollowUp $follow_up) {
         return $this->get('data_provider')
             ->createOrUpdate($request, $follow_up, FollowUpType::class);
     }
