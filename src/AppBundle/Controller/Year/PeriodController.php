@@ -52,21 +52,8 @@ class PeriodController extends FOSRestController
      */
     public function postPeriodsAction(Request $request)
     {
-        $period = new Period();
-        $form = $this->createForm(PeriodType::class, $period);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($period);
-            $em->flush();
-
-            return $period;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Period(), PeriodType::class);
     }
 
     /**
@@ -92,19 +79,8 @@ class PeriodController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putPeriodsAction(Request $request, Period $period) {
-        $form = $this->createForm(PeriodType::class, $period);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $period;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $period, PeriodType::class);
     }
 
     /**

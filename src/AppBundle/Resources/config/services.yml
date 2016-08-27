@@ -5,3 +5,8 @@ services:
             - "@doctrine.orm.entity_manager"
             - "@fos_user.user_manager"
             - "@swiftmailer.mailer"
+    data_provider:
+        class: AppBundle\Provider\DataProvider
+        arguments:
+            - "@doctrine.orm.entity_manager"
+            - "@form.factory"

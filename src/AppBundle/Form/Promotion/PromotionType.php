@@ -16,7 +16,6 @@ class PromotionType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('beacons')
         ;
     }
     

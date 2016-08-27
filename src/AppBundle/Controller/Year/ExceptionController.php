@@ -48,21 +48,8 @@ class ExceptionController extends FOSRestController
      */
     public function postExceptionAction(Request $request)
     {
-        $exception = new Exception();
-        $form = $this->createForm(ExceptionType::class, $exception);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($exception);
-            $em->flush();
-
-            return $exception;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Exception(), ExceptionType::class);
     }
 
     /**
@@ -83,19 +70,8 @@ class ExceptionController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putExceptionsAction(Request $request, Exception $exception) {
-        $form = $this->createForm(ExceptionType::class, $exception);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $exception;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $exception, ExceptionType::class);
     }
 
     /**

@@ -59,6 +59,27 @@ class StudentController extends FOSRestController
     }
 
     /**
+     * Récupération des stages d'un étudiant particulier.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Students",
+     *      statusCodes = {
+     *          200 = "Success, return a student.",
+     *          404 = "Error, Student not found."
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default", "Student"})
+     * @ParamConverter("student", class="AppBundle\Entity\Student")
+     * @param Student $student
+     * @return ArrayCollection<Internship>
+     */
+    public function getStudentsInternshipsAction(Student $student)
+    {
+        return $student->getInternships();
+    }
+
+    /**
      * Création d'un étudiant.
      * @ApiDoc(
      *      resource = false,

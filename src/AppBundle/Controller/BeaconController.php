@@ -52,21 +52,8 @@ class BeaconController extends FOSRestController
      */
     public function postBeaconsAction(Request $request)
     {
-        $beacon = new Beacon();
-        $form = $this->createForm(BeaconType::class, $beacon);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($beacon);
-            $em->flush();
-
-            return $beacon;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Beacon(), BeaconType::class);
     }
 
     /**

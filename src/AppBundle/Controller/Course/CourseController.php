@@ -52,21 +52,8 @@ class CourseController extends FOSRestController
      */
     public function postCourseAction(Request $request)
     {
-        $course = new Course();
-        $form = $this->createForm(CourseType::class, $course);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($course);
-            $em->flush();
-
-            return $course;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Course(), CourseType::class);
     }
 
     /**
@@ -84,18 +71,7 @@ class CourseController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putCoursesAction(Request $request, Course $course) {
-        $form = $this->createForm(CourseType::class, $course);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $course;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $course, CourseType::class);
     }
 }

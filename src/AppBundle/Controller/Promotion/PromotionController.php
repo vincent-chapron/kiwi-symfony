@@ -158,21 +158,8 @@ class PromotionController extends FOSRestController
      */
     public function postPromotionsAction(Request $request)
     {
-        $promotion = new Promotion();
-        $form = $this->createForm(PromotionType::class, $promotion);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($promotion);
-            $em->flush();
-
-            return $promotion;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Promotion(), PromotionType::class);
     }
 
     /**
@@ -196,19 +183,8 @@ class PromotionController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putPromotionsAction(Request $request, Promotion $promotion) {
-        $form = $this->createForm(PromotionType::class, $promotion);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $promotion;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $promotion, PromotionType::class);
     }
 
     /**

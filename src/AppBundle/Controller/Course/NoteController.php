@@ -107,21 +107,8 @@ class NoteController extends FOSRestController
      */
     public function postNoteAction(Request $request)
     {
-        $note = new Note();
-        $form = $this->createForm(NoteType::class, $note);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($note);
-            $em->flush();
-
-            return $note;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Note(), NoteType::class);
     }
 
     /**
@@ -139,18 +126,7 @@ class NoteController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putNoteAction(Request $request, Note $note) {
-        $form = $this->createForm(NoteType::class, $note);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $note;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $note, NoteType::class);
     }
 }

@@ -33,21 +33,8 @@ class ResultController extends FOSRestController
      */
     public function postResultAction(Request $request)
     {
-        $result = new Result();
-        $form = $this->createForm(ResultType::class, $result);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($result);
-            $em->flush();
-
-            return $result;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Result(), ResultType::class);
     }
 
     /**
@@ -65,19 +52,8 @@ class ResultController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putResultAction(Request $request, Result $result) {
-        $form = $this->createForm(ResultType::class, $result);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $result;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $result, ResultType::class);
     }
 
     /**

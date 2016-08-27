@@ -18,6 +18,18 @@ internships:
     type:     rest
     resource: AppBundle\Controller\Internship\InternshipController
 
+internships_companies:
+    type:     rest
+    resource: AppBundle\Controller\Internship\CompanyController
+
+internships_follow_ups:
+    type:     rest
+    resource: AppBundle\Controller\Internship\FollowUpController
+
+internships_mentors:
+    type:     rest
+    resource: AppBundle\Controller\Internship\MentorController
+
 internships_periods:
     type:     rest
     resource: AppBundle\Controller\Internship\PeriodController

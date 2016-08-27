@@ -52,21 +52,8 @@ class InternshipController extends FOSRestController
      */
     public function postInternshipsAction(Request $request)
     {
-        $internship = new Internship();
-        $form = $this->createForm(InternshipType::class, $internship);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($internship);
-            $em->flush();
-
-            return $internship;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Internship(), InternshipType::class);
     }
 
     /**
@@ -93,18 +80,7 @@ class InternshipController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putInternshipsAction(Request $request, Internship $internship) {
-        $form = $this->createForm(InternshipType::class, $internship);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $internship;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $internship, InternshipType::class);
     }
 }

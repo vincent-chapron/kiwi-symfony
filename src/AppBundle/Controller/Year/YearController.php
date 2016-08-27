@@ -91,21 +91,8 @@ class YearController extends FOSRestController
      */
     public function postYearsAction(Request $request)
     {
-        $year = new Year();
-        $form = $this->createForm(YearType::class, $year);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($year);
-            $em->flush();
-
-            return $year;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, new Year(), YearType::class);
     }
 
     /**
@@ -123,18 +110,7 @@ class YearController extends FOSRestController
      * @throw BadRequestHttpException
      */
     public function putYearsAction(Request $request, Year $year) {
-        $form = $this->createForm(YearType::class, $year);
-
-        $data = json_decode($request->getContent(), true);
-        $form->submit($data);
-
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->flush();
-
-            return $year;
-        }
-
-        throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $this->get('data_provider')
+            ->createOrUpdate($request, $year, YearType::class);
     }
 }
