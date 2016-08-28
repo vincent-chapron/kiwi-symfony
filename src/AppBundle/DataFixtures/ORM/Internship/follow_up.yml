@@ -1,0 +1,7 @@
+AppBundle\Entity\Internship\FollowUp:
+    suivi_1:
+        comment: "Premier suivi, tout se passe bien"
+        internship: "@internship_app_ventus"
+    suivi_2:
+        comment: "Deuxième suivi, tout se passe bien"
+        internship: "@internship_app_ventus"

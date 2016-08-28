@@ -1,0 +1,7 @@
+AppBundle\Entity\Internship\Mentor:
+    paul_andrieux:
+        fullname: Paul Andrieux
+        job: Co-Boss
+        phone: 0123456789
+        email: paul@appventus.com
+        company: "@app_ventus"

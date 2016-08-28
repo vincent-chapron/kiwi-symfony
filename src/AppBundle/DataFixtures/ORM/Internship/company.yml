@@ -1,0 +1,17 @@
+AppBundle\Entity\Internship\Company:
+    app_ventus:
+        address: 23bis rue jeussaipu, 44000 Nantes
+        name: App Ventus
+        socialReason: AppVentus
+        description: Agence web à Nantes
+        website: www.appventus.com
+        siret: 12345678900987654321
+        banned: 0
+        representativeFullname: Leny Bernard
+        representativeJob: Boss
+        representativePhone: 012345789
+        representativeMail: leny@appventus.com
+        administrationFullname: Sébastien Talbot
+        administrationJob: RH
+        administrationPhone: 0123456789
+        administrationMail: sebastien@appventus.com

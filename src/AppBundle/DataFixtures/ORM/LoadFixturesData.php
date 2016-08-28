@@ -22,6 +22,10 @@ class LoadUserData implements FixtureInterface {
         $files[] = __DIR__ . '/Course/result.yml';
         $files[] = __DIR__ . '/beacon.yml';
         $files[] = __DIR__ . '/Presence/historic.yml';
+        $files[] = __DIR__ . '/Internship/company.yml';
+        $files[] = __DIR__ . '/Internship/mentor.yml';
+        $files[] = __DIR__ . '/Internship/internship.yml';
+        $files[] = __DIR__ . '/Internship/follow_up.yml';
 
         Fixtures::load($files, $manager, [
             'locale'    => 'fr_FR',
