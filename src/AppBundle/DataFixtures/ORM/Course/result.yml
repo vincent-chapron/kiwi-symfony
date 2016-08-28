@@ -1,0 +1,17 @@
+AppBundle\Entity\Course\result:
+    result_tuteur:
+        value: [18.5]
+        note: "@note_tuteur"
+        student: "@vincent_chapron"
+    result_memoire:
+        value: [19.9]
+        note: "@note_memoire"
+        student: "@vincent_chapron"
+    result_soutenance:
+        value: [18.4]
+        note: "@note_soutenance"
+        student: "@vincent_chapron"
+    result_projet_innovant:
+        value: [21]
+        note: "@note_projet_innovant"
+        student: "@vincent_chapron"

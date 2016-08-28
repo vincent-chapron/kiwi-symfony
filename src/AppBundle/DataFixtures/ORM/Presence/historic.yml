@@ -1,0 +1,6 @@
+AppBundle\Entity\Presence\Historic:
+    presence_vincent:
+        status: present
+        arrived: 1
+        left: 0
+        student: "@vincent_chapron"

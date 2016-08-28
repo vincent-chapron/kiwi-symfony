@@ -1,0 +1,13 @@
+AppBundle\Entity\User:
+    user_vincent_chapron:
+        username: "chapro_v"
+        email: "vincent@chapron.io"
+        enabled: 1
+        salt: "1osavo2ma6aswksg0k4kwcwswwkkgss"
+        password: "$2y$13$YnH9E24m2opmUF2onWVjQOpyaB3203/M2gWUGXM1qws6Z7l7q7jSq"
+        # jElOSzFwBA
+        locked: 0
+        expired: 0
+        roles:
+            - "ROLE_USER"
+            - "ROLE_STUDENT"

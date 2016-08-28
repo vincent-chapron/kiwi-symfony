@@ -24,11 +24,9 @@ class Note
     }
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
+     * @ORM\Column(name="id", type="guid")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\GeneratedValue(strategy="UUID")
      */
     private $id;
 
@@ -62,7 +60,7 @@ class Note
     private $course;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="notes")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="note")
      */
     private $results;
 

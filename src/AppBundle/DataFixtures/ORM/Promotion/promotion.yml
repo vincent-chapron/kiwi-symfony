@@ -1,0 +1,3 @@
+AppBundle\Entity\Promotion\Promotion:
+    promotion_2019:
+        name: Promotion 2019

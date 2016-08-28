@@ -153,7 +153,7 @@ class Student
     private $presences;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="notes")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="student")
      */
     private $results;
 

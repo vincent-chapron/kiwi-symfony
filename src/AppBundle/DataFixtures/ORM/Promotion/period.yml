@@ -1,0 +1,19 @@
+AppBundle\Entity\Year\Period:
+    semestre_1:
+        name: Semestre 1
+        startAt: <(new \DateTime('2015-09-22'))>
+        endAt: <(new \DateTime('2016-02-09'))>
+        startArrivedTime: '08:00:00'
+        endArrivedTime: '09:05:00'
+        startLeftTime: '17:00:00'
+        endLeftTime: '23:42:00'
+        year: "@year_2015_2016"
+    semestre_2:
+        name: Semestre 2
+        startAt: <(new \DateTime('2016-02-10'))>
+        endAt: <(new \DateTime('2016-10-09'))>
+        startArrivedTime: '08:00:00'
+        endArrivedTime: '09:05:00'
+        startLeftTime: '17:00:00'
+        endLeftTime: '23:42:00'
+        year: "@year_2015_2016"

@@ -41,7 +41,7 @@ class YearController extends FOSRestController
      *      section = "Years"
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Year"})
      * @ParamConverter("year", class="AppBundle\Entity\Year\Year")
      * @param Year $year
      * @return Year
@@ -102,7 +102,7 @@ class YearController extends FOSRestController
      *      section = "Years"
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Year"})
      * @ParamConverter("promotion", class="AppBundle\Entity\Promotion\Promotion")
      * @param Request $request
      * @param Year $year

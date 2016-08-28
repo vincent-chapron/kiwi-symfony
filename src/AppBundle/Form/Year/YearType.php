@@ -16,6 +16,8 @@ class YearType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('startAt', 'date')
+            ->add('endAt', 'date')
             ->add('promotion')
         ;
     }

@@ -76,7 +76,7 @@ class HandleBeaconController extends FOSRestController
         }
 
         $presence->setArrived(true);
-        $presence->setStatus("Present");
+        $presence->setStatus("present");
         $em->flush();
 
         return [

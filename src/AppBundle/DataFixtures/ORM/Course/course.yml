@@ -1,0 +1,7 @@
+AppBundle\Entity\Course\Course:
+    PRO_STG2:
+        name: "PRO-STG2 - Validation des acquis en entreprise pendant le stage"
+        promotion: "@promotion_2019"
+    PRO_INNO:
+        name: "PRO-INNO - Fondamentaux de l'innovation"
+        promotion: "@promotion_2019"

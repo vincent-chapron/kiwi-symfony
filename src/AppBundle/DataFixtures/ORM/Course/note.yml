@@ -1,0 +1,21 @@
+AppBundle\Entity\Course\Note:
+    note_tuteur:
+        name: Evaluation tuteur
+        base: 20
+        scale: [note: 20]
+        course: "@PRO_STG2"
+    note_memoire:
+        name: Memoire
+        base: 20
+        scale: [note: 20]
+        course: "@PRO_STG2"
+    note_soutenance:
+        name: Soutenance Entreprise
+        base: 20
+        scale: [note: 20]
+        course: "@PRO_STG2"
+    note_projet_innovant:
+        name: Etude d'une projet innovant
+        base: 20
+        scale: [note: 20]
+        course: "@PRO_INNO"

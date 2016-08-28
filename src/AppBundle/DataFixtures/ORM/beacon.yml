@@ -1,0 +1,11 @@
+AppBundle\Entity\Beacon:
+    beacon_1:
+        name: beacon 1
+        secureUuid: b9043e94-6cbe-11e6-8a26-0071bec7ef01
+        promotions:
+            - "@promotion_2019"
+    beacon_2:
+        name: beacon 2
+        secureUuid: 83923eb2-6cbe-11e6-8a26-0071bec7ef07
+        promotions:
+            - "@promotion_2019"

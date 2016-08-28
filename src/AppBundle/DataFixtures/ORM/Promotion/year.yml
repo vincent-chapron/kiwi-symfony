@@ -1,0 +1,6 @@
+AppBundle\Entity\Year\Year:
+    year_2015_2016:
+        name: PREP ETNA 2
+        startAt: <(new \DateTime('2015-09-22'))>
+        endAt: <(new \DateTime('2016-10-09'))>
+        promotion: "@promotion_2019"

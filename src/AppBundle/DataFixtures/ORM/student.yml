@@ -1,0 +1,12 @@
+AppBundle\Entity\Student:
+    vincent_chapron:
+        forenames: Vincent
+        lastname: Chapron
+        email: vincent@chapron.io
+        phoneMobile: 0123456789
+        socialNumber: 154025002500522
+        assuranceName: MAE
+        assuranceContractNumber: 1GHDZ72-Z
+        prospect: 0
+        promotion: "@promotion_2019"
+        user: "@user_vincent_chapron"
