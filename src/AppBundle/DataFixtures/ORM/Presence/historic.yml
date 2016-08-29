@@ -4,3 +4,8 @@ AppBundle\Entity\Presence\Historic:
         arrived: 1
         left: 0
         student: "@vincent_chapron"
+    presence_sullivan:
+        status: present
+        arrived: 1
+        left: 0
+        student: "@sullivan_maxwell"

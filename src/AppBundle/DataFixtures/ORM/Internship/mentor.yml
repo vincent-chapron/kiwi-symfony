@@ -5,3 +5,9 @@ AppBundle\Entity\Internship\Mentor:
         phone: 0123456789
         email: paul@appventus.com
         company: "@app_ventus"
+    loic_goyet:
+        fullname: Loïc Goyet
+        job: Front developer
+        phone: 0123456789
+        email: loic@appventus.com
+        company: "@app_ventus"

@@ -10,3 +10,14 @@ AppBundle\Entity\Student:
         prospect: 0
         promotion: "@promotion_2019"
         user: "@user_vincent_chapron"
+    sullivan_maxwell:
+        forenames: Sullivan
+        lastname: Maxwell
+        email: maxwell_s@etna-alternance.net
+        phoneMobile: 0123456789
+        socialNumber: 124025002500522
+        assuranceName: MAE
+        assuranceContractNumber: 1GHDZ72-Z
+        prospect: 0
+        promotion: "@promotion_2019"
+        user: "@user_sullivan_maxwell"

@@ -1,5 +1,5 @@
 AppBundle\Entity\Internship\Internship:
-    internship_app_ventus:
+    internship_app_ventus_vincent:
         startAt: <(new \DateTime('2015-09-22'))>
         endAt: <(new \DateTime('2016-04-22'))>
         weeklyTime: 35
@@ -14,3 +14,18 @@ AppBundle\Entity\Internship\Internship:
         student: "@vincent_chapron"
         company: "@app_ventus"
         mentor: "@paul_andrieux"
+    internship_app_ventus_sullivan:
+        startAt: <(new \DateTime('2015-09-22'))>
+        endAt: <(new \DateTime('2016-04-22'))>
+        weeklyTime: 35
+        totalDays: 210
+        scheduleGratification: 2.1
+        natureAdvantages: tickets restaurant
+        traineeActivities: developpement symfony
+        traineeService: developpement
+        firstContact: Sébastien talbot
+        signedAt: <(new \DateTime('2015-09-01'))>
+        year: "@year_2015_2016"
+        student: "@sullivan_maxwell"
+        company: "@app_ventus"
+        mentor: "@loic_goyet"
