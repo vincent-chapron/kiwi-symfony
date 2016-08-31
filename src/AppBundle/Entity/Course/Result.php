@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Course;
 
 use AppBundle\Entity\Student;
+use AppBundle\Entity\Year\Period;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
@@ -72,7 +73,11 @@ class Result
      */
     private $student;
 
-    // TODO: Period M to O
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Year\Period", inversedBy="results")
+     * @ORM\JoinColumn(name="period_id", referencedColumnName="id")
+     */
+    private $period;
 
     /**
      * Get id
@@ -150,5 +155,27 @@ class Result
     public function getStudent()
     {
         return $this->student;
+    }
+
+    /**
+     * @param Period $period
+     * @return Result
+     */
+    public function setPeriod(Period $period)
+    {
+        $this->period = $period;
+        if ($this->period != null) {
+            $this->period->addResult($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Period $period
+     */
+    public function getPeriod()
+    {
+        return $this->period;
     }
 }

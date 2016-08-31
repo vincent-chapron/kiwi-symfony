@@ -3,31 +3,39 @@ AppBundle\Entity\Course\result:
         value: [18.5]
         note: "@note_tuteur"
         student: "@vincent_chapron"
+        period: "@semestre_2"
     result_memoire_vincent:
         value: [19.9]
         note: "@note_memoire"
         student: "@vincent_chapron"
+        period: "@semestre_2"
     result_soutenance_vincent:
         value: [18.4]
         note: "@note_soutenance"
         student: "@vincent_chapron"
+        period: "@semestre_2"
     result_projet_innovant_vincent:
         value: [21]
         note: "@note_projet_innovant"
         student: "@vincent_chapron"
+        period: "@semestre_2"
     result_tuteur_sullivan:
         value: [12.5]
         note: "@note_tuteur"
         student: "@sullivan_maxwell"
+        period: "@semestre_2"
     result_memoire_sullivan:
         value: [17.3]
         note: "@note_memoire"
         student: "@sullivan_maxwell"
+        period: "@semestre_2"
     result_soutenance_sullivan:
         value: [16]
         note: "@note_soutenance"
         student: "@sullivan_maxwell"
+        period: "@semestre_2"
     result_projet_innovant_sullivan:
         value: [21]
         note: "@note_projet_innovant"
         student: "@sullivan_maxwell"
+        period: "@semestre_2"

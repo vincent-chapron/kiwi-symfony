@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity\Year;
 
+use AppBundle\Entity\Course\Result;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 
@@ -14,6 +16,11 @@ use Gedmo\SoftDeleteable\Traits\SoftDeleteableEntity;
 class Period
 {
     use SoftDeleteableEntity;
+
+    public function __construct()
+    {
+        $this->results = new ArrayCollection();
+    }
 
     /**
      * @ORM\Column(name="id", type="guid")
@@ -76,6 +83,11 @@ class Period
      * @ORM\JoinColumn(name="year_id", referencedColumnName="id")
      */
     private $year;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Course\Result", mappedBy="period")
+     */
+    private $results;
 
     /**
      * Get id
@@ -259,5 +271,39 @@ class Period
     public function getYear()
     {
         return $this->year;
+    }
+
+    /**
+     * @param Result $result
+     * @return Period
+     */
+    public function addResult(Result $result = null)
+    {
+        $this->results->add($result);
+        if ($result->getPeriod() && $result->getPeriod()->getId() != $this->id) {
+            $result->setPeriod($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Result $result
+     * @return Period
+     */
+    public function removeResult($result)
+    {
+        $this->results->remove($result);
+        $result->setPeriod(null);
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection<Result>
+     */
+    public function getResults()
+    {
+        return $this->results;
     }
 }
