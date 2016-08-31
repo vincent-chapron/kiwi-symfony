@@ -22,7 +22,6 @@ class HandleBeaconController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @Post("/authorized/to/arrived", name="post_arrived", options={"method_prefix" = false});
      * @param Request $request
      * @return array
@@ -101,7 +100,6 @@ class HandleBeaconController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @Post("/authorized/to/left/{student}", name="post_left", options={"method_prefix" = false});
      * @param Request $request
      * @return array
