@@ -23,7 +23,7 @@ class HandleBeaconController extends FOSRestController
      *
      * @View(serializerGroups={"Default"})
      * @ParamConverter("student", class="AppBundle\Entity\Student")
-     * @Post("/authorized/to/arrived/{student}", name="post_arrived", options={"method_prefix" = false});
+     * @Post("/authorized/to/arrived", name="post_arrived", options={"method_prefix" = false});
      * @param Request $request
      * @return array
      */
@@ -50,19 +50,19 @@ class HandleBeaconController extends FOSRestController
             throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
         }
 
-        $data = json_decode($request->getContent(), true);
-        $secure_uuid = array_key_exists('secureUuid', $data) ? $data["secureUuid"] : null;
+//        $data = json_decode($request->getContent(), true);
+//        $secure_uuid = array_key_exists('secureUuid', $data) ? $data["secureUuid"] : null;
 
-        if (!$secure_uuid) {
-            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.parameter_is_missing'));
-        }
+//        if (!$secure_uuid) {
+//            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.parameter_is_missing'));
+//        }
 
-        $beacon_repository = $em->getRepository('AppBundle:Beacon');
-        $beacon = $beacon_repository->findOneBySecureUuid($secure_uuid);
+//        $beacon_repository = $em->getRepository('AppBundle:Beacon');
+//        $beacon = $beacon_repository->findOneBySecureUuid($secure_uuid);
 
-        if (!$student->getPromotion()->getBeacons()->contains($beacon)) {
-            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.wrong_beacon'));
-        }
+//        if (!$student->getPromotion()->getBeacons()->contains($beacon)) {
+//            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.wrong_beacon'));
+//        }
 
         if ($presence->isArrived()) {
             throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.already_arrived'));
@@ -130,19 +130,19 @@ class HandleBeaconController extends FOSRestController
             throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
         }
 
-        $data = json_decode($request->getContent(), true);
-        $secure_uuid = array_key_exists('secureUuid', $data) ? $data["secureUuid"] : null;
+//        $data = json_decode($request->getContent(), true);
+//        $secure_uuid = array_key_exists('secureUuid', $data) ? $data["secureUuid"] : null;
 
-        if (!$secure_uuid) {
-            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.parameter_is_missing'));
-        }
+//        if (!$secure_uuid) {
+//            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.parameter_is_missing'));
+//        }
 
-        $beacon_repository = $em->getRepository('AppBundle:Beacon');
-        $beacon = $beacon_repository->findOneBySecureUuid($secure_uuid);
+//        $beacon_repository = $em->getRepository('AppBundle:Beacon');
+//        $beacon = $beacon_repository->findOneBySecureUuid($secure_uuid);
 
-        if (!$student->getPromotion()->getBeacons()->contains($beacon)) {
-            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.wrong_beacon'));
-        }
+//        if (!$student->getPromotion()->getBeacons()->contains($beacon)) {
+//            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.wrong_beacon'));
+//        }
 
         if ($presence->isLeft()) {
             throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.already_left'));
