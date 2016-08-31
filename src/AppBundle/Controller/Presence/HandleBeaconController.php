@@ -4,9 +4,7 @@ namespace AppBundle\Controller\Presence;
 
 use AppBundle\Entity\Beacon;
 use AppBundle\Entity\Presence\Historic;
-use AppBundle\Entity\Promotion\Promotion;
-use AppBundle\Entity\Student;
-use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\User;
 use FOS\RestBundle\Controller\Annotations\View;
 use FOS\RestBundle\Controller\Annotations\Post;
 use FOS\RestBundle\Controller\FOSRestController;
@@ -27,11 +25,22 @@ class HandleBeaconController extends FOSRestController
      * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @Post("/authorized/to/arrived/{student}", name="post_arrived", options={"method_prefix" = false});
      * @param Request $request
-     * @param Student $student
      * @return array
      */
-    public function postArrivedAction(Request $request, Student $student) {
+    public function postArrivedAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
+        $user = $this->getUser();
+
+        /** @var User $user */
+        if (!$user) {
+            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
+        }
+
+        $student = $user->getStudent();
+
+        if (!$student) {
+            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
+        }
 
         /** @var Historic $presence */
         $presence_repository = $em->getRepository('AppBundle:Presence\Historic');
@@ -95,11 +104,23 @@ class HandleBeaconController extends FOSRestController
      * @ParamConverter("student", class="AppBundle\Entity\Student")
      * @Post("/authorized/to/left/{student}", name="post_left", options={"method_prefix" = false});
      * @param Request $request
-     * @param Student $student
      * @return array
      */
-    public function postLeftAction(Request $request, Student $student) {
+    public function postLeftAction(Request $request) {
         $em = $this->getDoctrine()->getManager();
+
+        $user = $this->getUser();
+
+        /** @var User $user */
+        if (!$user) {
+            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
+        }
+
+        $student = $user->getStudent();
+
+        if (!$student) {
+            throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request.presence_not_found'));
+        }
 
         /** @var Historic $presence */
         $presence_repository = $em->getRepository('AppBundle:Presence\Historic');
