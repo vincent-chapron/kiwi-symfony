@@ -23,3 +23,15 @@ AppBundle\Entity\User:
         roles:
             - "ROLE_USER"
             - "ROLE_STUDENT"
+    user_admin:
+        username: "admin_a"
+        email: "admin@admin.com"
+        enabled: 1
+        salt: "4wft007o00sg08go80ocgkgggw0gwoc"
+        password: "$2y$13$/HSsySiewNvzA.ZtoJQlGOHOshG3ioAa/wK5CSTpMtPzNYrKtOjhG"
+        # admin
+        locked: 0
+        expired: 0
+        roles:
+            - "ROLE_USER"
+            - "ROLE_ADMIN"
