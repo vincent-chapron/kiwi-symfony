@@ -46,5 +46,6 @@ security:
         - { path: ^/authenticate, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/doc,      roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/,             roles: [IS_AUTHENTICATED_FULLY],    methods: [GET]}
-        - { path: ^/authorize,    roles: [ROLE_STUDENT]}
+        - { path: ^/authorized/,  roles: [ROLE_STUDENT]}
+        - { path: ^/tickets/,     roles: [ROLE_STUDENT],              methods: [GET, POST]}
         - { path: ^/,             roles: [ROLE_ADMIN]}
