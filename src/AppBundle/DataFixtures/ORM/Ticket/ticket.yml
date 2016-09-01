@@ -1,0 +1,6 @@
+AppBundle\Entity\Ticket\Ticket:
+    ticket_1:
+        close: 0
+        users:
+            - "@user_vincent_chapron"
+            - "@user_admin"

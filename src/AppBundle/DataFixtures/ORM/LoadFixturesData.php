@@ -13,8 +13,8 @@ class LoadUserData implements FixtureInterface {
     public function load(ObjectManager $manager) {
         $files = [];
         $files[] = __DIR__ . '/Promotion/promotion.yml';
-        $files[] = __DIR__ . '/Promotion/year.yml';
-        $files[] = __DIR__ . '/Promotion/period.yml';
+        $files[] = __DIR__ . '/Year/year.yml';
+        $files[] = __DIR__ . '/Year/period.yml';
         $files[] = __DIR__ . '/user.yml';
         $files[] = __DIR__ . '/student.yml';
         $files[] = __DIR__ . '/Course/course.yml';

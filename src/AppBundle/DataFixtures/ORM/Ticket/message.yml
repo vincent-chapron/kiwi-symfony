@@ -1,0 +1,9 @@
+AppBundle\Entity\Ticket\Ticket:
+    ticket_1:
+        content: "Ticket 1 , MESSAGE 1 by Vincent !!!"
+        ticket: "@ticket_1"
+        owner: "@user_vincent_chapron"
+    ticket_2:
+        content: "Ticket 1 , MESSAGE 2 by Admin !!!"
+        ticket: "@ticket_1"
+        owner: "@user_admin"
