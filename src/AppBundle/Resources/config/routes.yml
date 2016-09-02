@@ -46,6 +46,10 @@ students:
     type:     rest
     resource: AppBundle\Controller\StudentController
 
+tickets:
+    type:     rest
+    resource: AppBundle\Controller\Ticket\TicketController
+
 years:
     type:     rest
     resource: AppBundle\Controller\Year\YearController
