@@ -3,9 +3,9 @@ AppBundle\Entity\User:
         username: "chapro_v"
         email: "vincent@chapron.io"
         enabled: 1
-        salt: "1osavo2ma6aswksg0k4kwcwswwkkgss"
-        password: "$2y$13$YnH9E24m2opmUF2onWVjQOpyaB3203/M2gWUGXM1qws6Z7l7q7jSq"
-        # jElOSzFwBA
+        salt: "4wft007o00sg08go80ocgkgggw0gwoc"
+        password: "$2y$13$/HSsySiewNvzA.ZtoJQlGOHOshG3ioAa/wK5CSTpMtPzNYrKtOjhG"
+        # admin
         locked: 0
         expired: 0
         roles:
@@ -15,9 +15,9 @@ AppBundle\Entity\User:
         username: "maxwel_s"
         email: "maxwel_s@etna-alternance.net"
         enabled: 1
-        salt: "1osavo2ma6aswksg0k4kwcwswwkkgss"
-        password: "$2y$13$YnH9E24m2opmUF2onWVjQOpyaB3203/M2gWUGXM1qws6Z7l7q7jSq"
-        # jElOSzFwBA
+        salt: "4wft007o00sg08go80ocgkgggw0gwoc"
+        password: "$2y$13$/HSsySiewNvzA.ZtoJQlGOHOshG3ioAa/wK5CSTpMtPzNYrKtOjhG"
+        # admin
         locked: 0
         expired: 0
         roles:
