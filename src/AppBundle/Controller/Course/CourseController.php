@@ -27,6 +27,26 @@ class CourseController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default", "Course", "Note"})
+     * @ParamConverter("course", class="AppBundle\Entity\Course\Course")
+     * @param Course $course
+     * @return Course
+     */
+    public function getCourseAction(Course $course)
+    {
+        return $course;
+    }
+
+    /**
+     * Récupération des notes d'un cours.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Courses",
+     *      requirements = {
+     *          { "name" = "course", "dataType" = "uuid", "description" = "Example: 1d413e5d-57da-11e6-ae94-0071bec7ef07" }
+     *      }
+     * )
+     *
+     * @View(serializerGroups={"Default", "Course", "Note"})
      * @param $course
      * @return ArrayCollection<Note>
      */
