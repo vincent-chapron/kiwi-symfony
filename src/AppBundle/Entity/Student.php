@@ -52,6 +52,41 @@ class Student
      */
     public function getCurrentStatus()
     {
+        $presence = $this->getCurrentPresence();
+
+        if (!$presence) return null;
+        return $presence->getStatus() ? $presence->getStatus() : 'waiting';
+    }
+
+    /**
+     * VIRTUAL PROPERTY
+     * Is arrived ?
+     *
+     * @return boolean
+     */
+    public function isArrived()
+    {
+        $presence = $this->getCurrentPresence();
+
+        if (!$presence) return null;
+        return $presence->isArrived();
+    }
+
+    /**
+     * VIRTUAL PROPERTY
+     * Is left ?
+     *
+     * @return boolean
+     */
+    public function isLeft()
+    {
+        $presence = $this->getCurrentPresence();
+
+        if (!$presence) return null;
+        return $presence->isLeft();
+    }
+
+    public function getCurrentPresence() {
         $presences = $this->presences->filter(function($presence) {
             /** @var Historic $presence */
             $date = date("y-m-d", $presence->getCreatedAt()->getTimestamp());
@@ -64,7 +99,7 @@ class Student
 
         /** @var Historic $presence */
         $presence = $presences->first();
-        return $presence->getStatus() ? $presence->getStatus() : 'waiting';
+        return $presence;
     }
 
     /**

@@ -7,7 +7,30 @@ AppBundle\Entity\Student:
             expose: true
             groups:
                 - Student
+                - Me
         phoneMobile:
+            expose: true
+            groups:
+                - Student
+                - Me
+        phoneMobile:
+            expose: true
+            groups:
+                - Student
+                - Me
+        socialNumber:
+            expose: true
+            groups:
+                - Student
+        assuranceContractNumber:
+            expose: true
+            groups:
+                - Student
+        prospect:
+            expose: true
+            groups:
+                - Student
+        assuranceName:
             expose: true
             groups:
                 - Student
@@ -15,6 +38,21 @@ AppBundle\Entity\Student:
             expose: true
             groups:
                 - Student
+                - Me
+        promotion:
+            expose: true
+            groups:
+                - Student
+                - Me
+        presences:
+            expose: true
+            groups:
+                - Student
+        results:
+            expose: true
+            groups:
+                - Student
+                - Me
     virtual_properties:
         getFullName:
             serialized_name: fullname
@@ -25,3 +63,14 @@ AppBundle\Entity\Student:
             groups:
                 - Student
                 - Promotion
+                - Me
+        isArrived:
+            serialized_name: is_arrived
+            type: boolean
+            groups:
+                - Me
+        isleft:
+            serialized_name: is_left
+            type: boolean
+            groups:
+                - Me

@@ -23,7 +23,7 @@ class StudentController extends FOSRestController
      *      section = "Students"
      * )
      *
-     * @View(serializerGroups={"Default", "Student", "Me"})
+     * @View(serializerGroups={"Default", "Me"})
      * @return Student
      */
     public function getMeAction()
