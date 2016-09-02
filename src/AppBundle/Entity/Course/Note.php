@@ -23,6 +23,38 @@ class Note
         $this->results = new ArrayCollection();
     }
 
+    public function getStatistics() {
+        $statistics = [
+            "min"       => null,
+            "max"       => null,
+            "average"   => null
+        ];
+
+        foreach ($this->results as $result) {
+            /** @var Result $result */
+            $value = $result->getResult();
+
+            if ($statistics["min"] === null)
+                $statistics["min"] = $value;
+            else if ($statistics["min"] > $value)
+                $statistics["min"] = $value;
+
+            if ($statistics["max"] === null)
+                $statistics["max"] = $value;
+            else if ($statistics["max"] < $value)
+                $statistics["max"] = $value;
+
+            if ($statistics["average"] === null)
+                $statistics["average"] = $value;
+            else
+                $statistics["average"] += $value;
+        }
+
+        if ($statistics["average"] !== null) $statistics["average"] /= count($this->results);
+
+        return $statistics;
+    }
+
     /**
      * @ORM\Column(name="id", type="guid")
      * @ORM\Id

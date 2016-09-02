@@ -26,7 +26,7 @@ class CourseController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default"})
+     * @View(serializerGroups={"Default", "Course", "Note"})
      * @param $course
      * @return ArrayCollection<Note>
      */

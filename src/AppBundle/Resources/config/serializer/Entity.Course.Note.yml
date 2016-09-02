@@ -1,0 +1,25 @@
+AppBundle\Entity\Course\Note:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        name:
+            expose: true
+        base:
+            expose: true
+            groups:
+                - Note
+        scale:
+            expose: true
+            groups:
+                - Note
+                - Result
+        results:
+            expose: true
+            groups:
+                - Note
+                - Result
+    virtual_properties:
+        getStatistics:
+            serialized_name: statistics
+            type: array
