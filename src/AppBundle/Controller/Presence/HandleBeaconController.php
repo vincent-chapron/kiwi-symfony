@@ -100,7 +100,7 @@ class HandleBeaconController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @Post("/authorized/to/left/{student}", name="post_left", options={"method_prefix" = false});
+     * @Post("/authorized/to/left", name="post_left", options={"method_prefix" = false});
      * @param Request $request
      * @return array
      */
