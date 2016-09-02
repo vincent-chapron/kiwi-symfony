@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Student;
+use AppBundle\Entity\User;
 use AppBundle\Form\StudentType;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\RestBundle\Controller\Annotations\View;
@@ -15,6 +16,25 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class StudentController extends FOSRestController
 {
+    /**
+     * Récupération de son profil.
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Students"
+     * )
+     *
+     * @View(serializerGroups={"Default", "Student", "Me"})
+     * @return Student
+     */
+    public function getMeAction()
+    {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        if (!$user) throw new BadRequestHttpException($this->get('translator')->trans('exception.bad_request._default'));
+        return $user->getStudent();
+    }
+
     /**
      * Récupération des étudiants.
      * @ApiDoc(
