@@ -37,8 +37,9 @@ class Promotion
         foreach ($this->years as $year) {
             /** @var Year $year */
             $date = new \DateTime();
-            $start_at = $year->getStartAt();
-            $end_at = $year->getEndAt();
+            $date = date("y-m-d", $date->getTimestamp());
+            $start_at = date("y-m-d", $year->getStartAt()->getTimestamp());
+            $end_at = date("y-m-d", $year->getEndAt()->getTimestamp());
 
             if ($date >= $start_at && $date <= $end_at) return $year;
         }
@@ -52,8 +53,9 @@ class Promotion
             foreach ($year->getPeriods() as $period) {
                 /** @var Period $period */
                 $date = new \DateTime();
-                $start_at = $period->getStartAt();
-                $end_at = $period->getEndAt();
+                $date = date("y-m-d", $date->getTimestamp());
+                $start_at = date("y-m-d", $period->getStartAt()->getTimestamp());
+                $end_at = date("y-m-d", $period->getEndAt()->getTimestamp());
 
                 if ($date >= $start_at && $date <= $end_at) return $period;
             }
@@ -68,8 +70,9 @@ class Promotion
             foreach ($year->getExceptions() as $exception) {
                 /** @var Exception $exception */
                 $date = new \DateTime();
-                $start_at = $exception->getStartAt();
-                $end_at = $exception->getEndAt();
+                $date = date("y-m-d", $date->getTimestamp());
+                $start_at = date("y-m-d", $exception->getStartAt()->getTimestamp());
+                $end_at = date("y-m-d", $exception->getEndAt()->getTimestamp());
 
                 if ($date >= $start_at && $date <= $end_at) return $exception;
             }

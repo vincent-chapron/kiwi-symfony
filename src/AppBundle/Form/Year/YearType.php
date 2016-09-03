@@ -3,6 +3,7 @@
 namespace AppBundle\Form\Year;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -16,8 +17,8 @@ class YearType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('startAt', 'date')
-            ->add('endAt', 'date')
+            ->add('startAt', DateType::class, ['widget' => 'single_text'])
+            ->add('endAt', DateType::class, ['widget' => 'single_text'])
             ->add('promotion')
         ;
     }
