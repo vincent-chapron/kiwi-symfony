@@ -84,7 +84,11 @@ class PromotionController extends FOSRestController
              * @var Historic $presence
              */
             $presence = $presence_repository->getCurrentPresence($student);
-            $status = $presence->getStatus() ? strtolower($presence->getStatus()) : 'waiting';
+
+            if (!$presence)
+                $status = 'waiting';
+            else
+                $status = $presence->getStatus() ? strtolower($presence->getStatus()) : 'waiting';
 
             if (array_key_exists($status, $statistics)) {
                 $statistics[$status] += 1;
