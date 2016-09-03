@@ -46,6 +46,27 @@ class Student
 
     /**
      * VIRTUAL PROPERTY
+     */
+    public function getResultsWithCourses()
+    {
+        $courses = [];
+        foreach ($this->results as $result) {
+            /** @var Result $result */
+            $key = $result->getNote()->getCourse()->getId();
+            if (array_key_exists($key, $courses)) {
+                $courses[$key]['results'][] = $result;
+            } else {
+                $courses[$key] = [
+                    "course" => $result->getNote()->getCourse(),
+                    "results" => [$result]
+                ];
+            }
+        }
+        return $courses;
+    }
+
+    /**
+     * VIRTUAL PROPERTY
      * Get current status
      *
      * @return string

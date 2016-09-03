@@ -64,6 +64,12 @@ AppBundle\Entity\Student:
                 - Student
                 - Promotion
                 - Me
+        getResultsWithCourses:
+            serialized_name: courses
+            type: array
+            groups:
+                - Student
+                - Me
         isArrived:
             serialized_name: is_arrived
             type: boolean

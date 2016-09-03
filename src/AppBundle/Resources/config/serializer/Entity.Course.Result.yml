@@ -1,0 +1,21 @@
+AppBundle\Entity\Course\Result:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        note:
+            expose: true
+            groups:
+                - Me
+                - Student
+                - Result
+        period:
+            expose: true
+            groups:
+                - Me
+                - Student
+                - Result
+    virtual_properties:
+        getResult:
+            serialized_name: result
+            type: float
