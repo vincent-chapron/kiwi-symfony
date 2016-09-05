@@ -85,15 +85,16 @@ class ExceptionController extends FOSRestController
      * )
      *
      * @View(serializerGroups={"Default"})
-     * @ParamConverter("beacon", class="AppBundle\Entity\Year\Exception")
+     * @ParamConverter("exception", class="AppBundle\Entity\Year\Exception")
      * @param Exception $exception
-     * @return Exception
+     * @return mixed
      */
     public function deleteExceptionAction(Exception $exception) {
+        $id = $exception->getId();
         $em = $this->getDoctrine()->getManager();
         $em->remove($exception);
         $em->flush();
 
-        return $exception;
+        return ["success" => true, "id" => $id];
     }
 }

@@ -43,28 +43,28 @@ class Exception
     /**
      * @var string
      *
-     * @ORM\Column(name="start_arrived_time", type="string", length=255)
+     * @ORM\Column(name="start_arrived_time", type="string", length=255, nullable=true)
      */
     private $startArrivedTime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="end_arrived_time", type="string", length=255)
+     * @ORM\Column(name="end_arrived_time", type="string", length=255, nullable=true)
      */
     private $endArrivedTime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="start_left_time", type="string", length=255)
+     * @ORM\Column(name="start_left_time", type="string", length=255, nullable=true)
      */
     private $startLeftTime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="end_left_time", type="string", length=255)
+     * @ORM\Column(name="end_left_time", type="string", length=255, nullable=true)
      */
     private $endLeftTime;
 
