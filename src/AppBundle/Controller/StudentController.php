@@ -58,6 +58,49 @@ class StudentController extends FOSRestController
     }
 
     /**
+     * @ApiDoc(
+     *      resource = false,
+     *      section = "Students"
+     * )
+     *
+     * @View(serializerGroups={"Default"})
+     * @ParamConverter("student", class="AppBundle\Entity\Student")
+     * @param Student $student
+     * @param $status
+     * @return string
+     */
+    public function patchStudentStatusAction(Student $student, $status)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $presence = $student->getCurrentPresence();
+
+        if (!$presence) throw new BadRequestHttpException();
+
+        switch ($status) {
+            case 'present':
+                $presence->setArrived(true);
+                $presence->setStatus($status);
+                break;
+            case 'absent':
+                $presence->setArrived(true);
+                $presence->setStatus($status);
+                break;
+            case 'late':
+                $presence->setArrived(false);
+                $presence->setStatus($status);
+                break;
+            default:
+                $presence->setArrived(false);
+                $presence->setLeft(false);
+                $presence->setStatus(null);
+                $status = 'waiting';
+        }
+        $em->flush();
+
+        return $status;
+    }
+
+    /**
      * Récupération d'un étudiant particulier.
      * @ApiDoc(
      *      resource = false,
