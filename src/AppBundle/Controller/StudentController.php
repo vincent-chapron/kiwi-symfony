@@ -82,11 +82,11 @@ class StudentController extends FOSRestController
                 $presence->setStatus($status);
                 break;
             case 'absent':
-                $presence->setArrived(true);
+                $presence->setArrived(false);
                 $presence->setStatus($status);
                 break;
             case 'late':
-                $presence->setArrived(false);
+                $presence->setArrived(true);
                 $presence->setStatus($status);
                 break;
             default:
