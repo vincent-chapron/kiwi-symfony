@@ -60,6 +60,8 @@ class StudentManager {
         $user->setPlainPassword($password);
         $user->setStudent($student);
 
+        $this->addPresence($student);
+
         $this->userManager->updateUser($user);
 
         $mail = \Swift_Message::newInstance()

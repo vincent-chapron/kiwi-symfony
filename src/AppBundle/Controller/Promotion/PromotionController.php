@@ -67,37 +67,7 @@ class PromotionController extends FOSRestController
      * @return array
      */
     public function getPromotionStatisticsAction(Promotion $promotion) {
-        $em = $this->getDoctrine()->getManager();
-        $students = $promotion->getStudents();
-        $statistics = ["total" => count($students)];
-
-        $presence_repository = $em->getRepository('AppBundle:Presence\Historic');
-        $period = $promotion->getCurrentPeriod();
-        $exception = $promotion->getCurrentException();
-        $data = $exception ? $exception : $period;
-
-        if (!$data) return array_merge($statistics, ['out-of-range' => count($students)]);
-
-        foreach ($students as $student) {
-            /**
-             * @var Student $student
-             * @var Historic $presence
-             */
-            $presence = $presence_repository->getCurrentPresence($student);
-
-            if (!$presence)
-                $status = 'waiting';
-            else
-                $status = $presence->getStatus() ? strtolower($presence->getStatus()) : 'waiting';
-
-            if (array_key_exists($status, $statistics)) {
-                $statistics[$status] += 1;
-            } else {
-                $statistics[$status] = 1;
-            }
-        }
-
-        return $statistics;
+        return $this->get('presence_provider')->getPromotionStatistics($promotion);
     }
 
     /**

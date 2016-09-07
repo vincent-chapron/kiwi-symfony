@@ -83,6 +83,7 @@ class StudentController extends FOSRestController
                 break;
             case 'absent':
                 $presence->setArrived(false);
+                $presence->setLeft(false);
                 $presence->setStatus($status);
                 break;
             case 'late':
@@ -96,6 +97,8 @@ class StudentController extends FOSRestController
                 $status = 'waiting';
         }
         $em->flush();
+
+        $this->get('presence_issuer')->postStatistics($student->getPromotion());
 
         return $status;
     }

@@ -87,6 +87,8 @@ class HandleBeaconController extends FOSRestController
         $presence->setStatus("present");
         $em->flush();
 
+        $this->get('presence_issuer')->postStatistics($student->getPromotion());
+
         return [
             "success" => true,
             "data" => $presence

@@ -10,3 +10,13 @@ services:
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@form.factory"
+    presence_provider:
+        class: AppBundle\Provider\PresenceProvider
+        arguments:
+            - "@doctrine.orm.entity_manager"
+    statistics_provider:
+        class: AppBundle\Provider\StatisticProvider
+    presence_issuer:
+        class: AppBundle\Issuer\PresenceIssuer
+        arguments:
+            - "@presence_provider"
