@@ -25,6 +25,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Circle\RestClientBundle\CircleRestClientBundle(),
 
             new AppBundle\AppBundle(),
         ];
