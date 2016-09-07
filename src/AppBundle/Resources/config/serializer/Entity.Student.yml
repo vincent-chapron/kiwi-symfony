@@ -8,16 +8,13 @@ AppBundle\Entity\Student:
             groups:
                 - Student
                 - Me
+                - Internship
         phoneMobile:
             expose: true
             groups:
                 - Student
                 - Me
-        phoneMobile:
-            expose: true
-            groups:
-                - Student
-                - Me
+                - Internship
         socialNumber:
             expose: true
             groups:
@@ -44,6 +41,7 @@ AppBundle\Entity\Student:
             groups:
                 - Student
                 - Me
+                - Internship
         presences:
             expose: true
             groups:

@@ -14,6 +14,7 @@ AppBundle\Entity\Internship\Internship:
         student: "@vincent_chapron"
         company: "@app_ventus"
         mentor: "@paul_andrieux"
+        type: "stage"
     internship_app_ventus_sullivan:
         startAt: <(new \DateTime('2015-09-22'))>
         endAt: <(new \DateTime('2016-04-22'))>
@@ -29,3 +30,4 @@ AppBundle\Entity\Internship\Internship:
         student: "@sullivan_maxwell"
         company: "@app_ventus"
         mentor: "@loic_goyet"
+        type: "stage"

@@ -23,7 +23,7 @@ class InternshipController extends FOSRestController
      *      }
      * )
      *
-     * @View(serializerGroups={"Default", "Details"})
+     * @View(serializerGroups={"Default", "Internship"})
      * @ParamConverter("internship", class="AppBundle\Entity\Internship\Internship")
      * @param Internship $internship
      * @return Internship

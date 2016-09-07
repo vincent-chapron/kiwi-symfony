@@ -3,6 +3,7 @@
 namespace AppBundle\Entity\Internship;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Timestampable\Traits\TimestampableEntity;
 
 /**
  * FollowUp
@@ -12,6 +13,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class FollowUp
 {
+    use TimestampableEntity;
+    
     /**
      * @ORM\Column(name="id", type="guid")
      * @ORM\Id

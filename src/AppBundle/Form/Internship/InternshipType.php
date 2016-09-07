@@ -30,6 +30,7 @@ class InternshipType extends AbstractType
             ->add('student')
             ->add('company')
             ->add('mentor')
+            ->add('type')
         ;
     }
 

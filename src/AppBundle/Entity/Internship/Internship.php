@@ -126,6 +126,13 @@ class Internship
      */
     private $mentor;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type;
+
     /*
      * TODO: M to O -> SUPERVISOR
      */
@@ -505,5 +512,29 @@ class Internship
     public function getFollowUps()
     {
         return $this->followUps;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     *
+     * @return Internship
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }
