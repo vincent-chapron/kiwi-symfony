@@ -1,0 +1,6 @@
+exception.bad_request.already_arrived: Vous etiez déja présent
+exception.bad_request.not_time_to_arrived: Ce n'est pas l'heure d'arrivé
+exception.bad_request.presence_not_required: Présense pas obligatoire
+exception.bad_request.already_left : Déja parti
+exception.bad_request.not_time_to_left: Ce nest pas lheure de partir
+exception.bad_request.presence_not_found: Présense non trouvé
